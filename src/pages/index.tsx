@@ -88,14 +88,14 @@ export default function Index() {
               color={'white'}
               fontWeight={700}
               lineHeight={1.2}
-              fontSize={useBreakpointValue({ base: '5xl', md: '6xl' })}>
+              fontSize={useBreakpointValue({ base: '4xl', md: '6xl' })}>
               Software Development Company
             </Text>
             <Text
               color={'white'}
-              fontWeight={700}
+              fontWeight={300}
               lineHeight={1.2}
-              fontSize={useBreakpointValue({ base: '2xl', md: '3xl' })}>
+              fontSize={useBreakpointValue({ base: 'xl', md: '3xl' })}>
               Take the software path to your digital future
             </Text>
             <Stack direction={'row'}>
@@ -114,13 +114,13 @@ export default function Index() {
 
       <Box p={10}>
         <Stack spacing={4} as={Container} maxW={'6xl'} textAlign={'start'}>
-          <Heading fontSize={{ base: '3xl', sm: '5xl' }} mt={10}>
+          <Heading fontSize={{ base: '2xl', md: '5xl' }} mt={10}>
             Fuel your project with an expert team of industry-focused engineers
           </Heading>
         </Stack>
 
-        <Container maxW={'6xl'} mt={14}>
-          <Flex flexWrap="wrap" gridGap={6} justify="space-around">
+        <Container maxW={'6xl'} mt={{ base: '', md: '14' }}>
+          <Flex gridGap={6} justify="space-around" display={{ base: 'none', 'md': 'flex' }}>
 
             <HoverBox text1="1000+" text2="years in business" text3="For over a decade, we have developed thousands of outstanding projects that have helped our customers accomplish their business goals" />
 
@@ -129,9 +129,21 @@ export default function Index() {
             <HoverBox text1="3500+" text2="qualified specialists" text3="Andersen employs thousands of IT experts in numerous technical and business industries to fulfill our customers' software initiatives" />
           </Flex>
         </Container>
+
+      </Box>
+      <Box display={{ base: 'block', 'md': 'none' }} mt={'-16'}>
+        <SimpleSlider slidesToShow={1}>
+
+          <HoverBox text1="1000+" text2="years in business" text3="For over a decade, we have developed thousands of outstanding projects that have helped our customers accomplish their business goals" />
+
+          <HoverBox text1="16" text2="years in business" text3="For years, we’ve been providing high-quality IT services for customers from the most dynamic sectors, focusing on the best practices and greatest results" />
+
+          <HoverBox text1="3500+" text2="qualified specialists" text3="Andersen employs thousands of IT experts in numerous technical and business industries to fulfill our customers' software initiatives" />
+
+        </SimpleSlider>
       </Box>
 
-      <Flex justify={'space-around'} backgroundColor='gray.200' px='12'>
+      <Flex justify={'space-around'} backgroundColor='gray.200' px='12' display={{ base: 'none', 'md': 'flex' }}>
         <Link href="https://google.com"><Image src={Samsung} boxSize={'36'} /></Link>
         <Link href="https://google.com"><Image src={Samsung} boxSize={'36'} /></Link>
         <Link href="https://google.com"><Image src={Samsung} boxSize={'36'} /></Link>
@@ -139,6 +151,17 @@ export default function Index() {
         <Link href="https://google.com"><Image src={Samsung} boxSize={'36'} /></Link>
         <Link href="https://google.com"><Image src={Samsung} boxSize={'36'} /></Link>
       </Flex >
+      <Box display={{ base: 'block', 'md': 'none' }} mt={5}>
+        <Text fontSize={'2xl'} mx={12}>Companies we've worked with</Text>
+        <SimpleSlider slidesToShow={2}>
+          <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
+          <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
+          <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
+          <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
+          <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
+          <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
+        </SimpleSlider>
+      </Box>
 
       <Flex
         w={'full'}

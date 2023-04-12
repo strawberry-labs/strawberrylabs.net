@@ -27,7 +27,7 @@ export default function SimpleSlider({ children, slidesToShow, variableWidth, ho
 
 
     const settings = {
-        arrows: true,
+        arrows: false,
         dots: true,
         infinite: true,
         speed: 500,
