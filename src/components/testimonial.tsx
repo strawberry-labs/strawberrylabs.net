@@ -1,16 +1,16 @@
-import { Box, Divider, Flex, Grid, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Divider, Flex, Grid, HStack, Text, VStack, Stack } from "@chakra-ui/react";
 import React from "react";
 
 export default function Testimonial({ text1, text2, person, country, summary, industry, teamSize, duration, budget, technologies }: { text1: string, text2: string, person: string, country: string, summary: string, industry: string, teamSize: string, duration: string, budget: string, technologies: string[] }) {
     return (
-        <Grid templateColumns={'repeat(2, 1fr)'} textColor='gray.600' p={10}>
-            <VStack flexBasis={''} p={10} spacing={8} backgroundColor={'gray.100'}>
-                <Text textColor={'black'} fontSize={'2xl'}>"{text1}"</Text>
+        <HStack wrap='wrap' textColor='gray.600' p={{ lg: 10 }}>
+            <VStack minW={'60'} maxW={'xl'} p={{ base: 4, lg: 10 }} spacing={{ base: 4, lg: 8 }} backgroundColor={'gray.100'}>
+                <Text textColor={'black'} fontSize={{ base: 'xl', lg: '2xl' }}>"{text1}"</Text>
                 <Divider colorScheme={'red'} />
-                <Text>{text2}</Text>
+                <Text fontSize={{ base: 'xs', lg: 'md' }}>{text2}</Text>
                 <Text> - {person} </Text>
             </VStack>
-            <VStack p={10} align={'start'} spacing={12}>
+            <VStack p={{ base: 4, lg: 10 }} align={'start'} spacing={12}>
                 <Box>
                     <Text textColor={'black'} fontWeight={'semibold'}>COUNTRY</Text>
                     <Text>{country}</Text>
@@ -21,7 +21,7 @@ export default function Testimonial({ text1, text2, person, country, summary, in
                     <Text>{summary}</Text>
                 </Box>
 
-                <HStack spacing={6}>
+                <Stack direction={{ base: 'column', lg: 'row' }} wrap='wrap'>
                     <VStack align='start'>
                         <Text textColor={'black'} fontWeight={'semibold'}>INDUSTRY</Text>
                         <Text>{industry}</Text>
@@ -38,13 +38,13 @@ export default function Testimonial({ text1, text2, person, country, summary, in
                         <Text textColor={'black'} fontWeight={'semibold'}>BUDGET</Text>
                         <Text>{budget}</Text>
                     </VStack>
-                </HStack>
+                </Stack>
                 <Box>
                     <Text textColor={'black'} fontWeight={'semibold'}>TECHNOLOGIES</Text>
                     <Text>{technologies.join(' / ')}</Text>
                 </Box>
 
             </VStack>
-        </Grid>
+        </HStack>
     )
 }

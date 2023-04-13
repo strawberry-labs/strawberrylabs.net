@@ -17,7 +17,7 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
 
 
-export default function SimpleSlider({ children, slidesToShow, variableWidth, horizontalMargin }: { children: ReactNode, slidesToShow: number, variableWidth: boolean, horizontalMargin: number }) {
+export default function SimpleSlider({ children, slidesToShow, variableWidth, horizontalMargin, arrows }: { children: ReactNode, slidesToShow: number, variableWidth: boolean, horizontalMargin: number, arrows: boolean }) {
     const [slider, setSlider] = React.useState<Slider | null>(null);
 
     const count = Children.toArray(children).length;
@@ -34,6 +34,7 @@ export default function SimpleSlider({ children, slidesToShow, variableWidth, ho
         slidesToShow: slidesToShow < count ? slidesToShow : count,
         slidesToScroll: slidesToShow < count ? slidesToShow : count,
         variableWidth: variableWidth ? true : false,
+        swipe: !arrows
     };
 
     return (
@@ -41,7 +42,8 @@ export default function SimpleSlider({ children, slidesToShow, variableWidth, ho
             position={'relative'}
             overflow={'hidden'}
             p={10}>
-            <IconButton
+
+            {arrows && <><IconButton
                 aria-label="left-arrow"
                 variant="ghost"
                 position="absolute"
@@ -52,18 +54,19 @@ export default function SimpleSlider({ children, slidesToShow, variableWidth, ho
                 onClick={() => slider?.slickPrev()}>
                 <BiLeftArrowAlt size="40px" />
             </IconButton>
-            {/* Right Icon */}
-            <IconButton
-                aria-label="right-arrow"
-                variant="ghost"
-                position="absolute"
-                right={side}
-                top={top}
-                transform={'translate(0%, -50%)'}
-                zIndex={2}
-                onClick={() => slider?.slickNext()}>
-                <BiRightArrowAlt size="40px" />
-            </IconButton>
+                {/* Right Icon */}
+                <IconButton
+                    aria-label="right-arrow"
+                    variant="ghost"
+                    position="absolute"
+                    right={side}
+                    top={top}
+                    transform={'translate(0%, -50%)'}
+                    zIndex={2}
+                    onClick={() => slider?.slickNext()}>
+                    <BiRightArrowAlt size="40px" />
+                </IconButton></>}
+
             <Box mx={horizontalMargin}>
                 <Slider {...settings} ref={(slider) => setSlider(slider)}>
                     {children}

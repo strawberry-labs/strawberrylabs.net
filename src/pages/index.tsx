@@ -131,8 +131,9 @@ export default function Index() {
         </Container>
 
       </Box>
+
       <Box display={{ base: 'block', 'md': 'none' }} mt={'-16'}>
-        <SimpleSlider slidesToShow={1}>
+        <SimpleSlider slidesToShow={1} arrows={false}>
 
           <HoverBox text1="1000+" text2="years in business" text3="For over a decade, we have developed thousands of outstanding projects that have helped our customers accomplish their business goals" />
 
@@ -151,9 +152,10 @@ export default function Index() {
         <Link href="https://google.com"><Image src={Samsung} boxSize={'36'} /></Link>
         <Link href="https://google.com"><Image src={Samsung} boxSize={'36'} /></Link>
       </Flex >
+
       <Box display={{ base: 'block', 'md': 'none' }} mt={5}>
         <Text fontSize={'2xl'} mx={12}>Companies we've worked with</Text>
-        <SimpleSlider slidesToShow={2}>
+        <SimpleSlider slidesToShow={3} arrows={false}>
           <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
           <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
           <Link href="https://google.com"><Image src={Samsung} boxSize={'28'} /></Link>
@@ -164,33 +166,31 @@ export default function Index() {
       </Box>
 
       <Flex
-        w={'full'}
-        h={'100vh'}
+        h={{ base: 'lg', md: 'xl', lg: '100vh' }}
         backgroundImage={WorldMap}
         backgroundSize={'cover'}
         backgroundPosition={'center center'}
         backgroundColor="gray.900">
         <HStack
-          w={'full'}
           justify={'start'}
-          px={useBreakpointValue({ base: 4, md: 8 })}
+          px={useBreakpointValue({ base: 0, md: 8 })}
           bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
-          <Stack maxW={'2xl'} align={'flex-start'} spacing={10} ml={'14'}>
+          <Stack maxW={'2xl'} align={'flex-start'} spacing={10} ml={{ base: '8', md: '14' }}>
             <Text
               color={'white'}
               fontWeight={200}
               lineHeight={1.2}
-              fontSize={useBreakpointValue({ base: '4xl', md: '5xl' })}>
+              fontSize={useBreakpointValue({ base: '3xl', md: '5xl' })}>
               Andersen in Europe
             </Text>
             <Text
               color={'white'}
               fontWeight={400}
               lineHeight={1.2}
-              fontSize={useBreakpointValue({ base: '1xl', md: '2xl' })}>
+              fontSize={useBreakpointValue({ base: 'md', md: '2xl' })}>
               As a well-established European company, Andersen has won the trust of multiple customers working all over the EU with our high-caliber tech support services. We can thoroughly analyze and fully understand your needs to start delivering the best possible outcomes. Our history, customer referrals, and experienced employees are our guarantee of success!
             </Text>
-            <HStack>
+            <HStack wrap={'wrap'}>
               <HStack>
                 <Text
                   color={'white'}
@@ -235,52 +235,56 @@ export default function Index() {
         </HStack>
       </Flex >
 
-      <VStack p={24} backgroundColor='gray.100' spacing={8}>
-        <Text fontSize={'4xl'} mb="10">Collaboration models with our custom software development company</Text>
-        <HStack spacing={28}>
-          <HStack background={'white'} shadow="lg" p={8} >
-            <VStack align={'start'} w={'60'} spacing={5}>
-              <Text fontSize={'sm'} rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4}>Staff augmentation</Text>
+      <VStack p={{ base: 8, md: 24 }} backgroundColor='gray.100' spacing={8} align={'start'}>
+        <Text fontSize={'4xl'} mb="10" display={{ base: 'none', md: 'block' }}>Collaboration models with our custom software development company</Text>
+        <Text fontSize={'3xl'} mb="10" display={{ base: 'block', md: 'none' }}>Collaboration models</Text>
+        <HStack spacing={{ base: 0, lg: 28 }} wrap={'wrap'}>
+          <HStack background={'white'} shadow="lg" p={8} mb={6}>
+            <VStack align={'start'} minW={{ base: '60' }} maxW={{ lg: '60' }} spacing={5}>
+              <Text fontSize={{ base: 'xs', md: 'sm' }} rounded={'3xl'} backgroundColor={"gray.200"} p={{ base: 1, md: 2 }} px={4}>Staff augmentation</Text>
               <Text fontSize={'2xl'}>Hire top notch experts</Text>
               <Text> - Specialists with tailored-fit skills who meet all your needs;</Text>
               <Text> - An extensive talent pool of IT specialists at your disposal in no time.</Text>
               <Button rightIcon={<ArrowForwardIcon />} variant={'Link'}>Learn more</Button>
+              <Image src="/icon.png" boxSize={'36'} display={{ base: 'block', md: 'none' }} />
             </VStack>
-            <Image src="/icon.png" boxSize={'36'} />
+            <Image src="/icon.png" boxSize={'36'} display={{ base: 'none', md: 'block' }} />
           </HStack>
           <HStack background={'white'} shadow="lg" p={8} >
-            <VStack align={'start'} w={'60'} spacing={5}>
-              <Text fontSize={'sm'} rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4}>Dedicated Team</Text>
+            <VStack align={'start'} minW={{ base: '60' }} maxW={{ lg: '60' }} spacing={5}>
+              <Text fontSize={{ base: 'xs', md: 'sm' }} rounded={'3xl'} backgroundColor={"gray.200"} p={{ base: 1, md: 2 }} px={4}>Dedicated Team</Text>
               <Text fontSize={'2xl'}>Get a dedicated Agile team</Text>
               <Text> - A fully-staffed IT team assembled for your unique needs;</Text>
               <Text> - You retain strategic control over the development process.</Text>
               <Button rightIcon={<ArrowForwardIcon />} variant={'Link'}>Learn more</Button>
+              <Image src="/icon.png" boxSize={'36'} display={{ base: 'block', md: 'none' }} />
             </VStack>
-            <Image src="/icon.png" boxSize={'36'} />
+            <Image src="/icon.png" boxSize={'36'} display={{ base: 'none', md: 'block' }} />
           </HStack>
         </HStack>
-        <HStack background={'white'} shadow="lg" p={8} w="5xl">
-          <VStack align={'start'} spacing={5} w="sm">
-            <Text fontSize={'sm'} rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4}>Managed Delivery</Text>
+        <HStack background={'white'} shadow="lg" p={8} w={{ lg: '5xl' }}>
+          <VStack align={'start'} spacing={5} minW={{ base: '60' }}>
+            <Text fontSize={{ base: 'xs', md: 'sm' }} rounded={'3xl'} backgroundColor={"gray.200"} p={{ base: 1, md: 2 }} px={4}>Managed Delivery</Text>
             <Text fontSize={'2xl'}>Develop a robust software solution</Text>
             <Text> - Your IT project delegated to a trusted vendor;</Text>
             <Text> - Andersen shares responsibility for turning your vision into reality.</Text>
             <Button rightIcon={<ArrowForwardIcon />} variant={'Link'}>Learn more</Button>
+            <Image src="/icon.png" boxSize={'36'} display={{ base: 'block', md: 'none' }} />
           </VStack>
-          <Image src="/icon.png" boxSize={'36'} />
+          <Image src="/icon.png" boxSize={'36'} display={{ base: 'none', md: 'block' }} />
         </HStack>
       </VStack>
 
-      <VStack backgroundColor='gray.800' align={'start'} p={20} spacing={8}>
-        <Text textColor={"whiteAlpha.900"} fontSize="4xl" >Top Companies rely on Andersen</Text>
+      <VStack backgroundColor='gray.800' align={'start'} p={{ base: 8, md: 20 }} spacing={8}>
+        <Text textColor={"whiteAlpha.900"} fontSize={{ base: "3xl", md: "4xl" }} >Top Companies rely on Andersen</Text>
         <Text textColor={"whiteAlpha.900"}>Latest Projects</Text>
-        <Card maxW='6xl' maxH={'3xl'}>
+        <Card minW={'60'} maxW={{ lg: '6xl' }} maxH={'3xl'}>
           <Image
             src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
             alt='Green double couch with wooden legs'
             borderRadius='lg'
             maxH={'xs'}
-            minW={'6xl'}
+            minW={{ base: '60', lg: '6xl' }}
           />
           <CardBody>
             <Stack spacing={4} align="start" m="4">
@@ -296,8 +300,8 @@ export default function Index() {
           </CardBody>
           <Divider />
         </Card>
-        <HStack spacing={8}>
-          <Card maxW='sm'>
+        <Stack direction={{ base: 'column', lg: 'row' }} spacing='8'>
+          <Card maxW={{ lg: 'sm' }}>
             <Image
               src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
               alt='Green double couch with wooden legs'
@@ -317,7 +321,7 @@ export default function Index() {
             </CardBody>
             <Divider />
           </Card>
-          <Card maxW='sm'>
+          <Card maxW={{ lg: 'sm' }}>
             <Image
               src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
               alt='Green double couch with wooden legs'
@@ -337,7 +341,7 @@ export default function Index() {
             </CardBody>
             <Divider />
           </Card>
-          <Card maxW='sm'>
+          <Card maxW={{ lg: 'sm' }}>
             <Image
               src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
               alt='Green double couch with wooden legs'
@@ -357,16 +361,16 @@ export default function Index() {
             </CardBody>
             <Divider />
           </Card>
-        </HStack>
-        <HStack backgroundColor={'gray.700'} p={4} px={8} spacing={16}>
-          <Text textColor={"whiteAlpha.900"} fontSize="xl">With numerous IT projects delivered, our custom software development company provides a detailed estimate for your IT initiative.</Text>
+        </Stack>
+        <HStack backgroundColor={'gray.700'} p={4} px={8} wrap={{ base: 'wrap' }}>
+          <Text textColor={"whiteAlpha.900"} fontSize={{ base: 'md', lg: "xl" }} mb={{ base: 4 }}>With numerous IT projects delivered, our custom software development company provides a detailed estimate for your IT initiative.</Text>
           <Link
             backgroundColor={'yellow.400'}
             size={'sm'}
-            mr={4}
+            mr={{ lg: 4 }}
             p={4}
             href={'pricing'}
-            w={"xs"}
+            w={{ md: "xs" }}
             textAlign={'center'}>
             Calculate your project
           </Link>
@@ -374,54 +378,98 @@ export default function Index() {
       </VStack>
 
       <Box>
-        <Text fontSize={'5xl'} mt={16} mx={20}>Testimonials</Text>
-        <Text fontSize={'xl'} mx={20}>SMB, enterprise, and startup customers return to our custom software company because they’re happy with our work. Here is what they say about Andersen.</Text>
-        <SimpleSlider slidesToShow={1} horizontalMargin={4}>
-          <Testimonial
-            text1="Andersen's team established a streamlined ticketing process for timely delivery"
-            text2="The app has earned a positive response so far, securing large orders from end clients. Moreover, Andersen’s team has established a streamlined ticketing process to ensure timely delivery. They’re communicative, deliver high-quality work, and even recommend alternative solutions to improve the app."
-            person="Senior Software Engineer Greenwald Industries"
-            country="USA"
-            summary="Mobile app for laundry hardware payment company"
-            industry="Financial Services"
-            teamSize="12 specialists"
-            duration="6 months"
-            budget="over 200k USD"
-            technologies={["PHP Symphony", "Angular"]}
-          />
-          <Testimonial
-            text1="Andersen's team established a streamlined ticketing process for timely delivery 2"
-            text2="The app has earned a positive response so far, securing large orders from end clients. Moreover, Andersen’s team has established a streamlined ticketing process to ensure timely delivery. They’re communicative, deliver high-quality work, and even recommend alternative solutions to improve the app."
-            person="Senior Software Engineer Greenwald Industries"
-            country="USA"
-            summary="Mobile app for laundry hardware payment company"
-            industry="Financial Services"
-            teamSize="12 specialists"
-            duration="6 months"
-            budget="over 200k USD"
-            technologies={["PHP Symphony", "Angular"]}
-          />
-        </SimpleSlider>
+        <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 8, lg: 16 }} mx={{ base: 10, lg: 20 }}>Testimonials</Text>
+        <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 20 }} mt={{ base: 4, lg: 0 }}>SMB, enterprise, and startup customers return to our custom software company because they’re happy with our work. Here is what they say about Andersen.</Text>
+        <Box display={{ base: 'none', lg: 'flex' }}>
+          <SimpleSlider slidesToShow={1} horizontalMargin={4} arrows={true}>
+            <Testimonial
+              text1="Andersen's team established a streamlined ticketing process for timely delivery"
+              text2="The app has earned a positive response so far, securing large orders from end clients. Moreover, Andersen’s team has established a streamlined ticketing process to ensure timely delivery. They’re communicative, deliver high-quality work, and even recommend alternative solutions to improve the app."
+              person="Senior Software Engineer Greenwald Industries"
+              country="USA"
+              summary="Mobile app for laundry hardware payment company"
+              industry="Financial Services"
+              teamSize="12 specialists"
+              duration="6 months"
+              budget="over 200k USD"
+              technologies={["PHP Symphony", "Angular"]}
+            />
+            <Testimonial
+              text1="Andersen's team established a streamlined ticketing process for timely delivery 2"
+              text2="The app has earned a positive response so far, securing large orders from end clients. Moreover, Andersen’s team has established a streamlined ticketing process to ensure timely delivery. They’re communicative, deliver high-quality work, and even recommend alternative solutions to improve the app."
+              person="Senior Software Engineer Greenwald Industries"
+              country="USA"
+              summary="Mobile app for laundry hardware payment company"
+              industry="Financial Services"
+              teamSize="12 specialists"
+              duration="6 months"
+              budget="over 200k USD"
+              technologies={["PHP Symphony", "Angular"]}
+            />
+          </SimpleSlider>
+        </Box>
+        <Box display={{ base: 'block', lg: 'none' }}>
+          <SimpleSlider slidesToShow={1} horizontalMargin={2} arrows={false}>
+            <Testimonial
+              text1="Andersen's team established a streamlined ticketing process for timely delivery"
+              text2="The app has earned a positive response so far, securing large orders from end clients. Moreover, Andersen’s team has established a streamlined ticketing process to ensure timely delivery. They’re communicative, deliver high-quality work, and even recommend alternative solutions to improve the app."
+              person="Senior Software Engineer Greenwald Industries"
+              country="USA"
+              summary="Mobile app for laundry hardware payment company"
+              industry="Financial Services"
+              teamSize="12 specialists"
+              duration="6 months"
+              budget="over 200k USD"
+              technologies={["PHP Symphony", "Angular"]}
+            />
+            <Testimonial
+              text1="Andersen's team established a streamlined ticketing process for timely delivery 2"
+              text2="The app has earned a positive response so far, securing large orders from end clients. Moreover, Andersen’s team has established a streamlined ticketing process to ensure timely delivery. They’re communicative, deliver high-quality work, and even recommend alternative solutions to improve the app."
+              person="Senior Software Engineer Greenwald Industries"
+              country="USA"
+              summary="Mobile app for laundry hardware payment company"
+              industry="Financial Services"
+              teamSize="12 specialists"
+              duration="6 months"
+              budget="over 200k USD"
+              technologies={["PHP Symphony", "Angular"]}
+            />
+          </SimpleSlider>
+        </Box>
       </Box>
 
       <Box>
-        <Text fontSize={'5xl'} mt={16} mx={20}>Andersen's set of technologies for software development</Text>
-        <Text fontSize={'xl'} mx={20} mt={8}>Cooperate with competent and knowledgeable IT experts in desktop, web, and mobile software engineering. As a trusted tech and business partner, we apply the most advanced technologies, frameworks, and components to build software notable for both its solid and effective back-end with intuitive UI/UX.</Text>
-        <HStack spacing={5} mx={20} mt={12}>
+        <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 6, lg: 12 }} mx={{ base: 10, lg: 20 }}>Andersen's set of technologies for software development</Text>
+        <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 20 }} mt={{ base: 4, lg: 8 }}>Cooperate with competent and knowledgeable IT experts in desktop, web, and mobile software engineering. As a trusted tech and business partner, we apply the most advanced technologies, frameworks, and components to build software notable for both its solid and effective back-end with intuitive UI/UX.</Text>
+        <HStack spacing={{ lg: 5 }} mx={{ base: 10, lg: 20 }} mt={{ base: 6, lg: 12 }} wrap={'wrap'}>
           <Button onClick={() => setTechFilter('popular')} isActive={techFilter === "popular" ? true : false}>Popular</Button>
           <Button onClick={() => setTechFilter('mobile')} isActive={techFilter === "mobile" ? true : false}>Android</Button>
           <Button onClick={() => setTechFilter('frontend')} isActive={techFilter === "frontend" ? true : false}>Frontend</Button>
         </HStack>
-        <SimpleSlider slidesToShow={4} variableWidth={true} horizontalMargin={14}>
-          {techData.filter((item) => item.type.includes(techFilter)).map((item) => (
-            <Box mx={5} my={1}>
-              <VStack shadow={'base'} p={14} w={52}>
-                <Image mb={6} src={Android} />
-                <Link>{item.name}</Link>
-              </VStack>
-            </Box>
-          ))}
-        </SimpleSlider>
+        <Box display={{ base: 'none', 'lg': 'block' }}>
+          <SimpleSlider slidesToShow={4} variableWidth={true} arrows={true} horizontalMargin={14}>
+            {techData.filter((item) => item.type.includes(techFilter)).map((item) => (
+              <Box mx={5} my={1}>
+                <VStack shadow={'base'} p={14} w={52}>
+                  <Image mb={6} src={Android} />
+                  <Link>{item.name}</Link>
+                </VStack>
+              </Box>
+            ))}
+          </SimpleSlider>
+        </Box>
+        <Box display={{ base: 'block', 'lg': 'none' }}>
+          <SimpleSlider slidesToShow={2} variableWidth={true} arrows={false} horizontalMargin={0}>
+            {techData.filter((item) => item.type.includes(techFilter)).map((item) => (
+              <Box mx={2} my={1}>
+                <VStack shadow={'base'} p={{ base: 5, lg: 14 }} w={32}>
+                  <Image mb={6} src={Android} />
+                  <Link>{item.name}</Link>
+                </VStack>
+              </Box>
+            ))}
+          </SimpleSlider>
+        </Box>
       </Box>
 
       <Box>
