@@ -9,6 +9,12 @@ import {
     Tag,
     useColorModeValue,
     Divider,
+    VStack,
+    Accordion,
+    AccordionIcon,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
 } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 
@@ -45,7 +51,7 @@ export default function Footer() {
         <Box
             bg={useColorModeValue('gray.50', 'gray.900')}
             color={useColorModeValue('gray.700', 'gray.200')}>
-            <Container as={Stack} maxW={'6xl'} py={10}>
+            <Container as={Stack} maxW={'6xl'} py={10} display={{ base: 'none', md: 'block' }}>
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={8}>
                     <Stack align={'flex-start'}>
                         <ListHeader>Tech Stack</ListHeader>
@@ -98,6 +104,96 @@ export default function Footer() {
                     </Stack>
                 </SimpleGrid>
             </Container>
+            <VStack display={{ base: 'block', md: 'none' }} mx={4} pt={4}>
+                <Accordion allowMultiple>
+                    <AccordionItem my={2}>
+                        <AccordionButton>
+                            <Box as="span" flex='1' textAlign='left'>
+                                Tech Stack
+                            </Box>
+                            <AccordionIcon />
+                        </AccordionButton>
+
+                        <AccordionPanel pb={4}>
+                            <VStack align={'start'}>
+                                <Link>Front-End</Link>
+                                <Link>React</Link>
+                                <Divider />
+                                <Link>Back-End</Link>
+                                <Link>Express</Link>
+                            </VStack>
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem my={2}>
+                        <h2>
+                            <AccordionButton>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Industries
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <VStack align={'start'}>
+                                <Link>Financial Services</Link>
+                                <Link>Entertainment</Link>
+                            </VStack>
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem my={2}>
+                        <h2>
+                            <AccordionButton>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Services
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <VStack align={'start'}>
+                                <Link>Mobile Development</Link>
+                                <Link>Web Development</Link>
+                            </VStack>
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem my={2}>
+                        <h2>
+                            <AccordionButton>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Projects
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <VStack align={'start'}>
+                                <Link>A</Link>
+                                <Link>B</Link>
+                            </VStack>
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    <AccordionItem my={2}>
+                        <h2>
+                            <AccordionButton>
+                                <Box as="span" flex='1' textAlign='left'>
+                                    Company
+                                </Box>
+                                <AccordionIcon />
+                            </AccordionButton>
+                        </h2>
+                        <AccordionPanel pb={4}>
+                            <VStack align={'start'}>
+                                <Link>About Us</Link>
+                                <Link>Corporate life</Link>
+                            </VStack>
+                        </AccordionPanel>
+                    </AccordionItem>
+                </Accordion>
+            </VStack>
             <Divider />
             <Box py={10}>
                 <Flex

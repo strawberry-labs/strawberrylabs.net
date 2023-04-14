@@ -473,11 +473,71 @@ export default function Index() {
       </Box>
 
       <Box>
-        <Text fontSize={'5xl'} mt={16} mx={20}>A software company with over 1,000 implemented initiatives</Text>
-        <Text fontSize={'xl'} mx={20} mt={8}>As a top-ranked and trusted software development company, we run a pool of proficient IT experts and use the best available tools and techniques to engineer advanced software for our customers.</Text>
+        <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 8, lg: 16 }} mx={{ base: 10, lg: 20 }}>A software company with over 1,000 implemented initiatives</Text>
+        <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 20 }} mt={{ base: 4, lg: 8 }}>As a top-ranked and trusted software development company, we run a pool of proficient IT experts and use the best available tools and techniques to engineer advanced software for our customers.</Text>
       </Box>
-      <Box>
-        <SimpleSlider slidesToShow={4} horizontalMargin={12}>
+      <Box display={{ base: 'none', lg: 'block' }}>
+        <SimpleSlider slidesToShow={4} horizontalMargin={12} arrows={true}>
+          <Box px={4} my={1}>
+            <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
+              <Image src="/tinyLogo.svg" />
+              <Text fontSize={'2xl'}>Financial Services</Text>
+              <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+              <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+            </VStack>
+          </Box>
+          <Box px={4}>
+            <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
+              <Image src="/tinyLogo.svg" />
+              <Text fontSize={'2xl'}>Financial Serv 2</Text>
+              <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+              <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+            </VStack>
+          </Box>
+          <Box px={4}>
+            <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
+              <Image src="/tinyLogo.svg" />
+              <Text fontSize={'2xl'}>Financial Serv 3</Text>
+              <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+              <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+            </VStack>
+          </Box>
+          <Box px={4}>
+            <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
+              <Image src="/tinyLogo.svg" />
+              <Text fontSize={'2xl'}>Financial Serv 4</Text>
+              <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+              <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+            </VStack>
+          </Box>
+          <Box px={4}>
+            <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
+              <Image src="/tinyLogo.svg" />
+              <Text fontSize={'2xl'}>Financial Serv 5</Text>
+              <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+              <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+            </VStack>
+          </Box>
+          <Box px={4}>
+            <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
+              <Image src="/tinyLogo.svg" />
+              <Text fontSize={'2xl'}>Financial Serv 6</Text>
+              <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+              <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+            </VStack>
+          </Box>
+          <Box px={4}>
+            <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
+              <Image src="/tinyLogo.svg" />
+              <Text fontSize={'2xl'}>Financial Serv 7</Text>
+              <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+              <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+            </VStack>
+          </Box>
+        </SimpleSlider>
+      </Box>
+      <Box display={{ base: 'block', lg: 'none' }}>
+        <SimpleSlider slidesToShow={1} horizontalMargin={4} arrows={false}>
           <Box px={4} my={1}>
             <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
               <Image src="/tinyLogo.svg" />
@@ -537,10 +597,14 @@ export default function Index() {
         </SimpleSlider>
       </Box>
 
-      <Flex mx={'20'} my={'14'}>
-        <VStack width={'lg'} align={'start'} spacing={6} pr={20}>
-          <Text fontSize={'5xl'}>Request a free IT consultation</Text>
-          <Text fontSize={'xl'}>Fill out the form below to receive a free consultation and find out how Andersen can help your business grow.</Text>
+      <Box mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
+        <Text fontSize={{ base: '3xl', lg: '5xl' }} display={{ base: 'block', md: 'none' }}>Request a free IT consultation</Text>
+        <Text fontSize={{ base: 'md', lg: 'xl' }} display={{ base: 'block', md: 'none' }}>Fill out the form below to receive a free consultation and find out how Andersen can help your business grow.</Text>
+      </Box>
+      <Flex mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
+        <VStack width={'lg'} align={'start'} spacing={6} pr={20} display={{ base: 'none', lg: 'block' }}>
+          <Text fontSize={{ base: '3xl', lg: '5xl' }}>Request a free IT consultation</Text>
+          <Text fontSize={{ base: 'md', lg: 'xl' }}>Fill out the form below to receive a free consultation and find out how Andersen can help your business grow.</Text>
           <VStack my={4} spacing={4} align={'start'}>
             <Text>What happens next?</Text>
             <HStack>
@@ -571,17 +635,17 @@ export default function Index() {
             <option value='Media & Telecom'>Media & Telecom</option>
             <option value='Other'>Other</option>
           </Select>
-          <HStack>
+          <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
             <Input variant='flushed' placeholder='Name' />
             <Input variant='flushed' placeholder='Corporate E-mail' />
-          </HStack>
+          </Stack>
           <Input variant='flushed' placeholder='Phone' />
           <Text>We will call you ASAP or you can schedule a call</Text>
           <Input variant='flushed' placeholder='Describe your project' />
-          <HStack>
+          <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
             <Button backgroundColor={'yellow.300'} >Send Request</Button>
             <Checkbox>I want to protect my data by signing an NDA</Checkbox>
-          </HStack>
+          </Stack>
         </VStack>
       </Flex>
 
