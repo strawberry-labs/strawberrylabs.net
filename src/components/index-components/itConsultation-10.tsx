@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Box,
     Text,
@@ -16,6 +16,23 @@ import {
 import Samsung from '../../images/samsung-color.svg'
 
 export default function Section9() {
+
+    const [industry, setIndustry] = useState('Healthcare')
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [dateTime, setDateTime] = useState('')
+    const [description, setDescription] = useState('')
+    const [nda, setNda] = useState(false)
+
+    const formSubmit = () => {
+        fetch(`/api/saveData`, {
+            method: 'POST',
+            mode: "cors",
+            body: JSON.stringify({ industry, name, email, phone, dateTime, description, nda })
+        })
+    }
+
     return (
         <>
             <Box mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
@@ -49,7 +66,7 @@ export default function Section9() {
                     </HStack>
                 </VStack>
                 <VStack width={'2xl'} backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
-                    <Select variant='flushed' placeholder='Select your industry'>
+                    <Select variant='flushed' placeholder='Select your industry' value={industry} onChange={(e) => setIndustry(e.target.value)}>
                         <option value='Healthcare'>Healthcare</option>
                         <option value='Financial Services'>Financial Services</option>
                         <option value='Logistics & Supply chain'>Logistics & Supply chain</option>
@@ -57,15 +74,15 @@ export default function Section9() {
                         <option value='Other'>Other</option>
                     </Select>
                     <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
-                        <Input variant='flushed' placeholder='Name' />
-                        <Input variant='flushed' placeholder='Corporate E-mail' />
+                        <Input variant='flushed' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
+                        <Input variant='flushed' placeholder='Corporate E-mail' value={email} onChange={(e) => setEmail(e.target.value)} />
                     </Stack>
-                    <Input variant='flushed' placeholder='Phone' />
+                    <Input variant='flushed' placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)} />
                     <Text>We will call you ASAP or you can schedule a call</Text>
-                    <Input variant='flushed' placeholder='Describe your project' />
+                    <Input variant='flushed' placeholder='Describe your project' value={description} onChange={(e) => setDescription(e.target.value)} />
                     <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
-                        <Button backgroundColor={'yellow.300'} >Send Request</Button>
-                        <Checkbox>I want to protect my data by signing an NDA</Checkbox>
+                        <Button backgroundColor={'yellow.300'} onClick={(formSubmit)}>Send Request</Button>
+                        <Checkbox onClick={() => setNda(!nda)}>I want to protect my data by signing an NDA</Checkbox>
                     </Stack>
                 </VStack>
             </Flex>
