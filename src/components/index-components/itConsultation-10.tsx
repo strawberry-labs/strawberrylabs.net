@@ -12,7 +12,8 @@ import {
     VStack,
     Image,
     FormControl,
-    FormErrorMessage
+    FormErrorMessage,
+    FormLabel
 } from '@chakra-ui/react';
 
 import { Script } from 'gatsby';
@@ -81,32 +82,44 @@ export default function Section9() {
                     </HStack>
                 </VStack>
                 <VStack width={'2xl'} backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
-                    <Select variant='flushed' placeholder='Select your industry' value={industry} onChange={(e) => setIndustry(e.target.value)}>
-                        <option value='Healthcare'>Healthcare</option>
-                        <option value='Financial Services'>Financial Services</option>
-                        <option value='Logistics and Supply chain'>Logistics & Supply chain</option>
-                        <option value='Media and Telecom'>Media & Telecom</option>
-                        <option value='Other'>Other</option>
-                    </Select>
-                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
-                        <FormControl isInvalid={isNameError}>
-                            <Input variant='flushed' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
+                    <FormControl isRequired>
+                        <FormLabel>Industry</FormLabel>
+                        <Select variant='flushed' value={industry} onChange={(e) => setIndustry(e.target.value)} borderColor={'blackAlpha.400'}>
+                            <option value='Healthcare'>Healthcare</option>
+                            <option value='Financial Services'>Financial Services</option>
+                            <option value='Logistics and Supply chain'>Logistics & Supply chain</option>
+                            <option value='Media and Telecom'>Media & Telecom</option>
+                            <option value='Other'>Other</option>
+                        </Select>
+                    </FormControl>
+                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
+                        <FormControl isInvalid={isNameError} isRequired>
+                            <FormLabel>Name</FormLabel>
+                            <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
                             <FormErrorMessage>Name can only contain letters followed by a space or a period</FormErrorMessage>
                         </FormControl>
                         <FormControl isRequired isInvalid={isEmailError}>
-                            <Input variant='flushed' placeholder='Corporate E-mail' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <FormLabel>Email</FormLabel>
+                            <Input variant='flushed' value={email} onChange={(e) => setEmail(e.target.value)} borderColor={'blackAlpha.400'} />
                             <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
                         </FormControl>
                     </Stack>
-                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5, lg: 0 }}>
-                        <FormControl isInvalid={isPhoneError}>
-                            <Input variant='flushed' placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5 }}>
+                        <FormControl isInvalid={isPhoneError} isRequired>
+                            <FormLabel>Phone</FormLabel>
+                            <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
                             <FormErrorMessage>Enter a valid phone number</FormErrorMessage>
                         </FormControl>
-                        <DatePicker placeholder="Date & Time" value={dateTime} onChange={(e) => setDateTime(e)} />
+                        <FormControl>
+                            <FormLabel>Date</FormLabel>
+                            <DatePicker value={dateTime} onChange={(e) => setDateTime(e)} borderColor={'blackAlpha.400'} />
+                        </FormControl>
                     </Stack>
-                    <Input variant='flushed' placeholder='Describe your project' value={description} onChange={(e) => setDescription(e.target.value)} />
-                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
+                    <FormControl>
+                        <FormLabel>Describe your Project</FormLabel>
+                        <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
+                    </FormControl>
+                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
                         <Button backgroundColor={'yellow.300'} onClick={(formSubmit)} >Send Request</Button>
                         <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
                     </Stack>
