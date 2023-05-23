@@ -69,9 +69,9 @@ export default function Pricing() {
           </Stack>
         </HStack>
       </Flex>
-      <VStack spacing={10}>
+      <VStack spacing={10} my={20}>
         <Text fontSize={"5xl"}>Request an IT project cost estimate</Text>
-        <Tabs>
+        <Tabs size={'lg'}>
           <TabList>
             <Tab>Custom Software Development</Tab>
             <Tab>Team Augmentation</Tab>
@@ -79,7 +79,7 @@ export default function Pricing() {
 
           <TabPanels>
             <TabPanel>
-              <VStack>
+              <VStack pt={6} pb={6}>
                 <FormCheckBoxGroup
                   text={
                     "1. What type of software solution would you like to develop with Andersen?"
@@ -118,16 +118,15 @@ export default function Pricing() {
                   val4={"Enterprise"}
                 />
 
-                <Box>
-                  <Text>5. What is the expected duration of your project?</Text>
+                <Box py={6}>
+                  <Text fontSize={{ base: '5xl', lg: '3xl' }}>5. What is the expected duration of your project?</Text>
                   <Slider defaultValue={1} min={0} max={24} step={1}>
                     <SliderTrack bg="yellow.100">
-                      <Box position="relative" right={10} />
+                      <Box position="relative" right={10} my={6} />
                       <SliderFilledTrack bg="yellow.400" />
                     </SliderTrack>
                     <SliderThumb boxSize={6} />
                   </Slider>
-                  <Divider />
                 </Box>
 
                 <Button>Get Pricing</Button>

@@ -5,17 +5,16 @@ export default function FormRadioGroup({ text, val1, val2, val3, val4 }: { text:
     const [value, setValue] = useState('');
 
     return (
-        <Box>
-            <Text>{text}</Text>
+        <Box py={6}>
+            <Text fontSize={{ base: '5xl', lg: '3xl' }}>{text}</Text>
             <RadioGroup onChange={setValue} value={value}>
-                <Stack spacing={[1, 5]} direction={['column', 'row']}>
+                <Stack spacing={[1, 5]} direction={['column', 'row']} my={6}>
                     <Radio value={val1}>{val1}</Radio>
                     <Radio value={val2}>{val2}</Radio>
                     <Radio value={val3}>{val3}</Radio>
                     <Radio value={val4}>{val4}</Radio>
                 </Stack>
             </RadioGroup>
-            <Divider />
         </Box>
     )
 }

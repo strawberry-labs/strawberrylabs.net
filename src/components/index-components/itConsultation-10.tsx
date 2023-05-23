@@ -10,8 +10,14 @@ import {
     HStack,
     Button,
     VStack,
-    Image
+    Image,
+    FormControl,
+    FormErrorMessage
 } from '@chakra-ui/react';
+
+import { Script } from 'gatsby';
+
+import { DatePicker } from "chakra-ui-date-input";
 
 import Samsung from '../../images/samsung-color.svg'
 
@@ -25,16 +31,25 @@ export default function Section9() {
     const [description, setDescription] = useState('')
     const [nda, setNda] = useState(false)
 
+    const isNameError = name != '' && !/^([a-zA-Z]+(\.|\s)*)$/.test(name);
+    const isEmailError = email != '' && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+    const isPhoneError = phone != '' && !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/.test(phone);
+
     const formSubmit = () => {
-        fetch(`/api/saveData`, {
-            method: 'POST',
-            mode: "cors",
-            body: JSON.stringify({ industry, name, email, phone, dateTime, description, nda })
-        })
+        grecaptcha.ready(function () {
+            grecaptcha.execute('6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX', { action: 'submit' }).then(function (token) {
+                fetch(`/api/saveData`, {
+                    method: 'POST',
+                    mode: "cors",
+                    body: JSON.stringify({ industry, name, email, phone, dateTime, description, nda, token })
+                })
+            });
+        });
     }
 
     return (
         <>
+            <Script src="https://www.google.com/recaptcha/api.js?render=6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX" />
             <Box mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
                 <Text fontSize={{ base: '3xl', lg: '5xl' }} display={{ base: 'block', md: 'none' }}>Request a free IT consultation</Text>
                 <Text fontSize={{ base: 'md', lg: 'xl' }} display={{ base: 'block', md: 'none' }}>Fill out the form below to receive a free consultation and find out how Andersen can help your business grow.</Text>
@@ -69,20 +84,31 @@ export default function Section9() {
                     <Select variant='flushed' placeholder='Select your industry' value={industry} onChange={(e) => setIndustry(e.target.value)}>
                         <option value='Healthcare'>Healthcare</option>
                         <option value='Financial Services'>Financial Services</option>
-                        <option value='Logistics & Supply chain'>Logistics & Supply chain</option>
-                        <option value='Media & Telecom'>Media & Telecom</option>
+                        <option value='Logistics and Supply chain'>Logistics & Supply chain</option>
+                        <option value='Media and Telecom'>Media & Telecom</option>
                         <option value='Other'>Other</option>
                     </Select>
                     <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
-                        <Input variant='flushed' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
-                        <Input variant='flushed' placeholder='Corporate E-mail' value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <FormControl isInvalid={isNameError}>
+                            <Input variant='flushed' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
+                            <FormErrorMessage>Name can only contain letters followed by a space or a period</FormErrorMessage>
+                        </FormControl>
+                        <FormControl isRequired isInvalid={isEmailError}>
+                            <Input variant='flushed' placeholder='Corporate E-mail' value={email} onChange={(e) => setEmail(e.target.value)} />
+                            <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
+                        </FormControl>
                     </Stack>
-                    <Input variant='flushed' placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)} />
-                    <Text>We will call you ASAP or you can schedule a call</Text>
+                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5, lg: 0 }}>
+                        <FormControl isInvalid={isPhoneError}>
+                            <Input variant='flushed' placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)} />
+                            <FormErrorMessage>Enter a valid phone number</FormErrorMessage>
+                        </FormControl>
+                        <DatePicker placeholder="Date & Time" value={dateTime} onChange={(e) => setDateTime(e)} />
+                    </Stack>
                     <Input variant='flushed' placeholder='Describe your project' value={description} onChange={(e) => setDescription(e.target.value)} />
                     <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10, lg: 0 }}>
-                        <Button backgroundColor={'yellow.300'} onClick={(formSubmit)}>Send Request</Button>
-                        <Checkbox onClick={() => setNda(!nda)}>I want to protect my data by signing an NDA</Checkbox>
+                        <Button backgroundColor={'yellow.300'} onClick={(formSubmit)} >Send Request</Button>
+                        <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
                     </Stack>
                 </VStack>
             </Flex>

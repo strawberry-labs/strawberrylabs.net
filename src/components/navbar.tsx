@@ -293,8 +293,8 @@ export default function Navbar() {
               </Modal>
             </Box>
           </Flex>
-        </Box>
-      </Box>
+        </Box >
+      </Box >
     </>
   );
 }

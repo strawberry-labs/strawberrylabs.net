@@ -17,7 +17,7 @@ import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
 
 
-export default function SimpleSlider({ children, slidesToShow, variableWidth, horizontalMargin, arrows }: { children: ReactNode, slidesToShow: number, variableWidth: boolean, horizontalMargin: number, arrows: boolean }) {
+export default function SimpleSlider({ children, slidesToShow, variableWidth, horizontalMargin }: { children: ReactNode, slidesToShow: number, variableWidth: boolean, horizontalMargin: number }) {
     const [slider, setSlider] = React.useState<Slider | null>(null);
 
     const count = Children.toArray(children).length;
@@ -25,6 +25,7 @@ export default function SimpleSlider({ children, slidesToShow, variableWidth, ho
     const top = useBreakpointValue({ base: '90%', md: '50%' });
     const side = useBreakpointValue({ base: '30%', md: '40px' });
 
+    const arrows = useBreakpointValue({ base: false, lg: true })
 
     const settings = {
         arrows: false,

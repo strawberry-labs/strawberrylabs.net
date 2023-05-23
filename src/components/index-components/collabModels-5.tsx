@@ -17,7 +17,7 @@ import Gatsby from '../../images/icon.png'
 
 export default function Section4() {
     return (
-        <VStack p={{ base: 8, md: 24 }} backgroundColor='gray.100' spacing={8} align={'start'}>
+        <VStack p={{ base: 8, md: 24 }} backgroundColor='gray.100' spacing={8} align={'center'}>
             <Text fontSize={'4xl'} mb="10" display={{ base: 'none', md: 'block' }}>Collaboration models with our custom software development company</Text>
             <Text fontSize={'3xl'} mb="10" display={{ base: 'block', md: 'none' }}>Collaboration models</Text>
             <HStack spacing={{ base: 0, lg: 28 }} wrap={'wrap'}>
