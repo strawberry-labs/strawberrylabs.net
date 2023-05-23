@@ -53,7 +53,7 @@ function IndustryCard({ text1, text2 }: { text1: string, text2: string }) {
 
 export default function Section8() {
     return (
-        <>
+        <Box id='Industries'>
             <Box>
                 <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 8, lg: 16 }} mx={{ base: 10, lg: 20 }}>A software company with over 1,000 implemented initiatives</Text>
                 <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 20 }} mt={{ base: 4, lg: 8 }}>As a top-ranked and trusted software development company, we run a pool of proficient IT experts and use the best available tools and techniques to engineer advanced software for our customers.</Text>
@@ -68,6 +68,6 @@ export default function Section8() {
                     {data.map(item => (<IndustryCard text1={item.title} text2={item.desc} />))}
                 </SimpleSlider>
             </Box>
-        </>
+        </Box>
     )
 }

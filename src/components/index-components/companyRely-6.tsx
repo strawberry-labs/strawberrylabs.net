@@ -23,7 +23,7 @@ import Company4 from "../../images/company4.webp"
 
 export default function Section5() {
   return (
-    <Box backgroundColor="gray.800" p={{ base: 8, md: 20 }}>
+    <Box id="Projects" backgroundColor="gray.800" p={{ base: 8, md: 20 }}>
       <Text textColor={"whiteAlpha.900"} fontSize={{ base: "3xl", md: "4xl" }}>
         Top Companies rely on Andersen
       </Text>

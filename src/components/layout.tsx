@@ -2,10 +2,10 @@ import React, { ReactNode } from "react"
 import Footer from "./footer"
 import Navbar from "./navbar"
 
-export default function Layout({ children }: { children: ReactNode }) {
+export default function Layout({ modalOpen, children }: { modalOpen: any, children: ReactNode }) {
     return (
         <>
-            <Navbar />
+            <Navbar modalOpen={modalOpen} />
             {children}
             <Footer />
         </>

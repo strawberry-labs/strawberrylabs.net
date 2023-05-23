@@ -22,7 +22,7 @@ export default function Index() {
   const { isOpen, onOpen, onClose } = useDisclosure() // For modal
 
   return (
-    <Layout>
+    <Layout modalOpen={onOpen}>
       <Hero onOpen={onOpen} />
       <Section1 />
       <Section2 />

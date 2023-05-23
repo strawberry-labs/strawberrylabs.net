@@ -2,67 +2,27 @@ import React, { ReactNode } from "react";
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
-  Button,
   Image,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
   useDisclosure,
-  useColorModeValue,
-  Stack,
-  Center,
-  Divider,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalFooter,
   ModalBody,
-  ModalHeader,
   ModalCloseButton,
-  Accordion,
-  AccordionIcon,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  VStack,
+  Button,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
   CloseIcon,
-  AddIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
 } from "@chakra-ui/icons";
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 
-export default function Navbar() {
+export default function Navbar({ modalOpen }: { modalOpen: any }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const {
-    isOpen: isOpenTechStack,
-    onOpen: onOpenTechStack,
-    onClose: onCloseTechStack,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenIndustries,
-    onOpen: onOpenIndustries,
-    onClose: onCloseIndustries,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenServices,
-    onOpen: onOpenServices,
-    onClose: onCloseServices,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenCompany,
-    onOpen: onOpenCompany,
-    onClose: onCloseCompany,
-  } = useDisclosure();
 
   return (
     <>
@@ -86,97 +46,15 @@ export default function Navbar() {
 
             <Flex alignItems={"center"} display={{ base: "none", md: "block" }}>
               <HStack spacing={8} alignItems={"center"}>
-                <Menu isOpen={isOpenTechStack}>
-                  <MenuButton
-                    onMouseEnter={onOpenTechStack}
-                    onMouseLeave={onCloseTechStack}
-                  >
-                    Tech Stack{" "}
-                    {isOpenTechStack ? <ChevronUpIcon /> : <ChevronDownIcon />}{" "}
-                  </MenuButton>
-                  <MenuList
-                    onMouseEnter={onOpenTechStack}
-                    onMouseLeave={onCloseTechStack}
-                  >
-                    <MenuItem as="a" href="#">
-                      Link 1
-                    </MenuItem>
-                    <MenuItem as="a" href="#">
-                      Link 2
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-
-                <Menu isOpen={isOpenIndustries}>
-                  <MenuButton
-                    onMouseEnter={onOpenIndustries}
-                    onMouseLeave={onCloseIndustries}
-                  >
-                    Industries{" "}
-                    {isOpenIndustries ? <ChevronUpIcon /> : <ChevronDownIcon />}{" "}
-                  </MenuButton>
-                  <MenuList
-                    onMouseEnter={onOpenIndustries}
-                    onMouseLeave={onCloseIndustries}
-                  >
-                    <MenuItem as="a" href="#">
-                      Link 1
-                    </MenuItem>
-                    <MenuItem as="a" href="#">
-                      Link 2
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-
-                <Menu isOpen={isOpenServices}>
-                  <MenuButton
-                    onMouseEnter={onOpenServices}
-                    onMouseLeave={onCloseServices}
-                  >
-                    Services{" "}
-                    {isOpenServices ? <ChevronUpIcon /> : <ChevronDownIcon />}{" "}
-                  </MenuButton>
-                  <MenuList
-                    onMouseEnter={onOpenServices}
-                    onMouseLeave={onCloseServices}
-                  >
-                    <MenuItem as="a" href="#">
-                      Link 1
-                    </MenuItem>
-                    <MenuItem as="a" href="#">
-                      Link 2
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-                <Menu isOpen={isOpenCompany}>
-                  <MenuButton
-                    onMouseEnter={onOpenCompany}
-                    onMouseLeave={onCloseCompany}
-                  >
-                    Company{" "}
-                    {isOpenCompany ? <ChevronUpIcon /> : <ChevronDownIcon />}{" "}
-                  </MenuButton>
-                  <MenuList
-                    onMouseEnter={onOpenCompany}
-                    onMouseLeave={onCloseCompany}
-                  >
-                    <MenuItem as="a" href="#">
-                      Link 1
-                    </MenuItem>
-                    <MenuItem as="a" href="#">
-                      Link 2
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-                <Link mr={8}>Projects</Link>
-                <Box height="25px" mr={8}>
-                  <Divider orientation="vertical" />
-                </Box>
-                <Link mr={8}>Arabic</Link>
+                <AnchorLink to="/#TechStack">Tech Stack</AnchorLink>
+                <AnchorLink to="/#Industries">Industries</AnchorLink>
+                <AnchorLink to="/#Services">Services</AnchorLink>
+                <AnchorLink to="/#Company">Company</AnchorLink>
+                <AnchorLink to="/#Projects">Projects</AnchorLink>
               </HStack>
             </Flex>
             <Box>
-              <Link
+              <Button
                 color={"white"}
                 backgroundColor={"#D91E53"}
                 size={"lg"}
@@ -186,10 +64,10 @@ export default function Navbar() {
                 mr={4}
                 py={3}
                 px={5}
-                href={"/pricing"}
+                onClick={modalOpen}
               >
-                Pricing
-              </Link>
+                Contact Us
+              </Button>
               <IconButton
                 size={"md"}
                 icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -207,86 +85,11 @@ export default function Navbar() {
                 <ModalContent>
                   <ModalCloseButton size={"lg"} />
                   <ModalBody>
-                    <Link mr={8}>Arabic</Link>
-                    <Accordion allowMultiple>
-                      <AccordionItem>
-                        <AccordionButton>
-                          <Box as="span" flex="1" textAlign="left">
-                            Tech Stack
-                          </Box>
-                          <AccordionIcon />
-                        </AccordionButton>
-
-                        <AccordionPanel pb={4}>
-                          <VStack align={"start"}>
-                            <Link>Front-End</Link>
-                            <Link>React</Link>
-                            <Divider />
-                            <Link>Back-End</Link>
-                            <Link>Express</Link>
-                          </VStack>
-                        </AccordionPanel>
-                      </AccordionItem>
-
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box as="span" flex="1" textAlign="left">
-                              Industries
-                            </Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <VStack align={"start"}>
-                            <Link>Financial Services</Link>
-                            <Link>Entertainment</Link>
-                          </VStack>
-                        </AccordionPanel>
-                      </AccordionItem>
-
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box as="span" flex="1" textAlign="left">
-                              Services
-                            </Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <VStack align={"start"}>
-                            <Link>Mobile Development</Link>
-                            <Link>Web Development</Link>
-                          </VStack>
-                        </AccordionPanel>
-                      </AccordionItem>
-
-                      <AccordionItem>
-                        <Link>Projects</Link>
-                      </AccordionItem>
-
-                      <AccordionItem>
-                        <Link>Get pricing</Link>
-                      </AccordionItem>
-
-                      <AccordionItem>
-                        <h2>
-                          <AccordionButton>
-                            <Box as="span" flex="1" textAlign="left">
-                              Company
-                            </Box>
-                            <AccordionIcon />
-                          </AccordionButton>
-                        </h2>
-                        <AccordionPanel pb={4}>
-                          <VStack align={"start"}>
-                            <Link>About Us</Link>
-                            <Link>Corporate life</Link>
-                          </VStack>
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </Accordion>
+                    <AnchorLink to="/#TechStack">Tech Stack</AnchorLink>
+                    <AnchorLink to="/#Industries">Industries</AnchorLink>
+                    <AnchorLink to="/#Services">Services</AnchorLink>
+                    <AnchorLink to="/#Company">Company</AnchorLink>
+                    <AnchorLink to="/#Projects">Projects</AnchorLink>
                   </ModalBody>
                   <ModalFooter></ModalFooter>
                 </ModalContent>

@@ -34,6 +34,21 @@ const config: GatsbyConfig = {
         isBaseProvider: false,
       },
     },
+    {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        offset: -100
+      }
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/src/blog`,
+      },
+    },
+    `gatsby-transformer-remark`,
+    "gatsby-plugin-mdx",
   ],
 }
 
