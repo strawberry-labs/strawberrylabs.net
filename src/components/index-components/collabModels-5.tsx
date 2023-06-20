@@ -49,7 +49,7 @@ export default function Section4() {
                     <Text fontSize={{ base: 'xs', md: 'sm' }} rounded={'3xl'} backgroundColor={"gray.200"} p={{ base: 1, md: 2 }} px={4}>Managed Delivery</Text>
                     <Text fontSize={'2xl'}>Develop a robust software solution</Text>
                     <Text> - Your IT project delegated to a trusted vendor;</Text>
-                    <Text> - Andersen shares responsibility for turning your vision into reality.</Text>
+                    <Text> - Strawberry labs shares responsibility for turning your vision into reality.</Text>
                     <Button rightIcon={<ArrowForwardIcon />} variant={'Link'}>Learn more</Button>
                     <Image src={Gatsby} boxSize={'36'} display={{ base: 'block', md: 'none' }} />
                 </VStack>

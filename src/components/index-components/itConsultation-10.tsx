@@ -53,12 +53,12 @@ export default function Section9() {
             <Script src="https://www.google.com/recaptcha/api.js?render=6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX" />
             <Box mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
                 <Text fontSize={{ base: '3xl', lg: '5xl' }} display={{ base: 'block', md: 'none' }}>Request a free IT consultation</Text>
-                <Text fontSize={{ base: 'md', lg: 'xl' }} display={{ base: 'block', md: 'none' }}>Fill out the form below to receive a free consultation and find out how Andersen can help your business grow.</Text>
+                <Text fontSize={{ base: 'md', lg: 'xl' }} display={{ base: 'block', md: 'none' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
             </Box>
             <Flex mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
                 <VStack width={'lg'} align={'start'} spacing={6} pr={20} display={{ base: 'none', lg: 'block' }}>
                     <Text fontSize={{ base: '3xl', lg: '5xl' }}>Request a free IT consultation</Text>
-                    <Text fontSize={{ base: 'md', lg: 'xl' }}>Fill out the form below to receive a free consultation and find out how Andersen can help your business grow.</Text>
+                    <Text fontSize={{ base: 'md', lg: 'xl' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
                     <VStack my={4} spacing={4} align={'start'}>
                         <Text>What happens next?</Text>
                         <HStack>

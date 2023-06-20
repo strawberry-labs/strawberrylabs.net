@@ -57,37 +57,37 @@ export default function Test() {
                 <VStack shadow={"base"} w={'64'} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
                     <Image src="/tinyLogo.svg" />
                     <Text fontSize={'2xl'}>Financial Services</Text>
-                    <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+                    <Text>Strawberry Labs will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
                     <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
                 </VStack>
                 <VStack shadow={"base"} w={'64'} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
                     <Image src="/tinyLogo.svg" />
                     <Text fontSize={'2xl'}>Financial Services 2</Text>
-                    <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+                    <Text>Strawberry Labs will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
                     <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
                 </VStack>
                 <VStack shadow={"base"} w={'64'} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
                     <Image src="/tinyLogo.svg" />
                     <Text fontSize={'2xl'}>Financial Services 3</Text>
-                    <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+                    <Text>Strawberry Labs will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
                     <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
                 </VStack>
                 <VStack shadow={"base"} w={'64'} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
                     <Image src="/tinyLogo.svg" />
                     <Text fontSize={'2xl'}>Financial Services 3</Text>
-                    <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+                    <Text>Strawberry Labs will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
                     <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
                 </VStack>
                 <VStack shadow={"base"} w={'64'} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
                     <Image src="/tinyLogo.svg" />
                     <Text fontSize={'2xl'}>Financial Services 3</Text>
-                    <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+                    <Text>Strawberry Labs will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
                     <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
                 </VStack>
                 <VStack shadow={"base"} w={'64'} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
                     <Image src="/tinyLogo.svg" />
                     <Text fontSize={'2xl'}>Financial Services 3</Text>
-                    <Text>Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
+                    <Text>Strawberry Labs will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more.</Text>
                     <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
                 </VStack>
             </SimpleSlider>

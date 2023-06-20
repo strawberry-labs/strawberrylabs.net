@@ -49,7 +49,7 @@ export default function Hero({ onOpen }: { onOpen: any }) {
               _hover={{ bg: "#E23770" }}
               onClick={onOpen}
             >
-              Lets discuss your project
+              Book Consultation
             </Button>
           </Stack>
         </Stack>

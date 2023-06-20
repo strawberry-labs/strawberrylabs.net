@@ -14,6 +14,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
+  keyframes,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -23,6 +24,16 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 export default function Navbar({ modalOpen }: { modalOpen: any }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const shake = keyframes`
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(5deg); }
+  50% { transform: rotate(0eg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+  `
+
+  const shakeAnim = `${shake} infinite 0.5s linear`
 
   return (
     <>
@@ -65,6 +76,7 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
                 py={3}
                 px={5}
                 onClick={modalOpen}
+                animation={shakeAnim}
               >
                 Contact Us
               </Button>

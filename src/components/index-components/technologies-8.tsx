@@ -63,13 +63,13 @@ export default function Section7() {
 
     return (
         <Box id="TechStack">
-            <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 6, lg: 12 }} mx={{ base: 10, lg: 20 }}>Andersen's set of technologies for software development</Text>
+            <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 6, lg: 12 }} mx={{ base: 10, lg: 20 }}>Strawberry Labs' set of technologies for software development</Text>
             <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 20 }} mt={{ base: 4, lg: 8 }}>Cooperate with competent and knowledgeable IT experts in desktop, web, and mobile software engineering. As a trusted tech and business partner, we apply the most advanced technologies, frameworks, and components to build software notable for both its solid and effective back-end with intuitive UI/UX.</Text>
             <HStack spacing={{ lg: 5 }} mx={{ base: 10, lg: 20 }} mt={{ base: 6, lg: 12 }} wrap={'wrap'}>
                 <Button onClick={() => setTechFilter('')} isActive={techFilter === "" ? true : false}>All</Button>
-                <Button onClick={() => setTechFilter('mobile')} isActive={techFilter === "mobile" ? true : false}>Android</Button>
                 <Button onClick={() => setTechFilter('frontend')} isActive={techFilter === "frontend" ? true : false}>Frontend</Button>
                 <Button onClick={() => setTechFilter('backend')} isActive={techFilter === "backend" ? true : false}>Backend</Button>
+                <Button onClick={() => setTechFilter('mobile')} isActive={techFilter === "mobile" ? true : false}>Mobile</Button>
                 <Button onClick={() => setTechFilter('database')} isActive={techFilter === "database" ? true : false}>Database</Button>
             </HStack>
             <Box display={{ base: 'none', 'lg': 'block' }}>

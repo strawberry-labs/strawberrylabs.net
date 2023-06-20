@@ -14,27 +14,27 @@ import SimpleSlider from "../slider";
 const data = [
     {
         title: "Financial Services",
-        desc: "Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more."
+        desc: "Thanks to our expertise and track record in Finance, we are a cost-effective and trusted vendor of custom-built software for companies of different sizes and in different jurisdictions."
     },
     {
-        title: "Financial Serv 2",
-        desc: "Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more."
+        title: "Healthcare",
+        desc: "As a team of HealthTech experts, we ensure usability, compliance, data security, improved efficiency, interoperability, and the best value for money for healthcare providers and medical researchers."
     },
     {
-        title: "Financial Serv 3",
-        desc: "Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more."
+        title: "Media & Entertainment",
+        desc: "Strawberry Labs provides its customers from the Media & Entertainment sector with intuitive and convenient-to-use solutions, including VOD and OTT streaming tools, broadcasting services, MarTech and AdTech software, etc."
     },
     {
-        title: "Financial Serv 4",
-        desc: "Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more."
+        title: "Telecom",
+        desc: "Strawberry Labs' dedicated Telecom software developers and other experts are ready to help you with such solutions as OSS/BSS, telecom-specific web and mobile apps, VoIP projects, performance tracking tools, etc."
     },
     {
-        title: "Financial Serv 5",
-        desc: "Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more."
+        title: "Logistics Software",
+        desc: "Strawberry Labs' custom software development expertise in Logistics, Supply Chain, Transportation, and Warehousing enables us to handle projects of a wide scope, giving you leverage to grow and succeed."
     },
     {
-        title: "Financial Serv 6",
-        desc: "Andersen will support your IT projects across such areas as personalized finance assistants, digital wallets, FinTech tools, lending software, and more."
+        title: "eCommerce Solutions",
+        desc: "With our knowledge of the contemporary eCommerce landscape and hands-on skills tested on challenging products, we can deliver advanced solutions that drive revenue and increase sales."
     }
 ]
 

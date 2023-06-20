@@ -82,7 +82,7 @@ export default function Pricing() {
               <VStack pt={6} pb={6}>
                 <FormCheckBoxGroup
                   text={
-                    "1. What type of software solution would you like to develop with Andersen?"
+                    "1. What type of software solution would you like to develop with Strawberry Labs?"
                   }
                   val1={"Desktop"}
                   val2={"mobile"}
