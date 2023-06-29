@@ -35,7 +35,7 @@ export default function Section3() {
                         fontWeight={400}
                         lineHeight={1.2}
                         fontSize={useBreakpointValue({ base: 'md', md: '2xl' })}>
-                        As a well-established company in UAE, Strawberry Labs has won the trust of multiple customers working all over the EU with our high-caliber tech support services. We can thoroughly analyze and fully understand your needs to start delivering the best possible outcomes. Our history, customer referrals, and experienced employees are our guarantee of success!
+                        As a well-established company in UAE, Strawberry Labs has won the trust of multiple customers working all over UAE with our high-caliber tech support services. We can thoroughly analyze and fully understand your needs to start delivering the best possible outcomes. Our history, customer referrals, and experienced employees are our guarantee of success!
                     </Text>
                     <HStack wrap={'wrap'}>
                         <HStack>

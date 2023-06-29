@@ -49,13 +49,13 @@ export default function Section9() {
     }
 
     return (
-        <>
+        <HStack my={{ base: '7', lg: '14' }}>
             <Script src="https://www.google.com/recaptcha/api.js?render=6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX" />
-            <Box mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
+            <Box mx={{ base: '10', lg: '20' }} >
                 <Text fontSize={{ base: '3xl', lg: '5xl' }} display={{ base: 'block', md: 'none' }}>Request a free IT consultation</Text>
                 <Text fontSize={{ base: 'md', lg: 'xl' }} display={{ base: 'block', md: 'none' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
             </Box>
-            <Flex mx={{ base: '10', lg: '20' }} my={{ base: '7', lg: '14' }}>
+            <Flex mx={{ base: '10', lg: '20' }}>
                 <VStack width={'lg'} align={'start'} spacing={6} pr={20} display={{ base: 'none', lg: 'block' }}>
                     <Text fontSize={{ base: '3xl', lg: '5xl' }}>Request a free IT consultation</Text>
                     <Text fontSize={{ base: 'md', lg: 'xl' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
@@ -67,11 +67,11 @@ export default function Section9() {
                         </HStack>
                         <HStack>
                             <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>2</Text>
-                            <Text>2. If required, we sign an NDA to ensure the highest privacy level;</Text>
+                            <Text>If required, we sign an NDA to ensure the highest privacy level;</Text>
                         </HStack>
                         <HStack>
                             <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>3</Text>
-                            <Text>3. A Pre-Sales Manager submits a comprehensive project proposal. It may include estimates, timelines, lists of CVs, etc., for a particular situation.</Text>
+                            <Text>A Pre-Sales Manager submits a comprehensive project proposal. It may include estimates, timelines, lists of CVs, etc., for a particular situation.</Text>
                         </HStack>
                     </VStack>
                     <Text>Customers who trust us</Text>
@@ -125,6 +125,6 @@ export default function Section9() {
                     </Stack>
                 </VStack>
             </Flex>
-        </>
+        </HStack>
     )
 }

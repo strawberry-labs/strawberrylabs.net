@@ -73,7 +73,7 @@ export default function Section5() {
           </CardBody>
           <Divider />
         </Card>
-        <Stack direction={{ base: "column", lg: "row" }} spacing="8">
+        <Stack direction={{ base: "column", lg: "row" }} spacing="8" maxW={"6xl"}>
           <Card maxW={{ lg: "sm" }}>
             <Image
               src={Company2}
@@ -188,7 +188,7 @@ export default function Section5() {
             <Divider />
           </Card>
         </Stack>
-        <HStack backgroundColor={"gray.700"} p={4} px={8} wrap={{ base: "wrap" }}>
+        <VStack backgroundColor={"gray.700"} p={4} px={8} wrap={{ base: "wrap" }} maxW={"6xl"}>
           <Text
             textColor={"whiteAlpha.900"}
             fontSize={{ base: "md", lg: "xl" }}
@@ -208,7 +208,7 @@ export default function Section5() {
           >
             Calculate your project
           </Link>
-        </HStack>
+        </VStack>
       </VStack>
     </Box>
 
