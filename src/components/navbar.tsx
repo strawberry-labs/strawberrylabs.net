@@ -15,6 +15,7 @@ import {
   ModalCloseButton,
   Button,
   keyframes,
+  Text
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -25,15 +26,21 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 export default function Navbar({ modalOpen }: { modalOpen: any }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const shake = keyframes`
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(5deg); }
-  50% { transform: rotate(0eg); }
-  75% { transform: rotate(-5deg); }
-  100% { transform: rotate(0deg); }
+  const pulse = keyframes`
+  0% {
+    -moz-box-shadow: 0 0 0 0 #fca4bd;
+    box-shadow: 0 0 0 0 #fca4bd;
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px #fca4bd;
+      box-shadow: 0 0 0 7px #fca4bd;
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 #fca4bd;
+      box-shadow: 0 0 0 0 #fca4bd;
+  }
   `
-
-  const shakeAnim = `${shake} infinite 0.5s linear`
+  const pulseAnim = `${pulse} 1.5s infinite`
 
   return (
     <>
@@ -57,11 +64,11 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
 
             <Flex alignItems={"center"} display={{ base: "none", md: "block" }}>
               <HStack spacing={8} alignItems={"center"}>
-                <AnchorLink to="/#TechStack">Tech Stack</AnchorLink>
-                <AnchorLink to="/#Industries">Industries</AnchorLink>
-                <AnchorLink to="/#Services">Services</AnchorLink>
-                <AnchorLink to="/#Company">Company</AnchorLink>
-                <AnchorLink to="/#Projects">Projects</AnchorLink>
+                <AnchorLink to="/#TechStack"><Text fontSize={"xl"} fontWeight={"semibold"}>Tech Stack</Text></AnchorLink>
+                <AnchorLink to="/#Industries"><Text fontSize={"xl"} fontWeight={"semibold"}>Industries</Text></AnchorLink>
+                <AnchorLink to="/#Services"><Text fontSize={"xl"} fontWeight={"semibold"}>Services</Text></AnchorLink>
+                <AnchorLink to="/#Company"><Text fontSize={"xl"} fontWeight={"semibold"}>Company</Text></AnchorLink>
+                <AnchorLink to="/#Projects"><Text fontSize={"xl"} fontWeight={"semibold"}>Projects</Text></AnchorLink>
               </HStack>
             </Flex>
             <Box>
@@ -76,7 +83,7 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
                 py={3}
                 px={5}
                 onClick={modalOpen}
-                animation={shakeAnim}
+                animation={pulseAnim}
               >
                 Contact Us
               </Button>
