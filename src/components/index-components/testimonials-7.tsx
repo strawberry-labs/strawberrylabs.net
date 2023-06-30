@@ -1,6 +1,7 @@
 import React from 'react'
 import {
     Box,
+    Stack,
     Text
 } from '@chakra-ui/react';
 
@@ -53,23 +54,25 @@ export default function Section6() {
         <Box textAlign={'center'}>
             <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 8, lg: 16 }} mx={{ base: 10, lg: 20 }}>Testimonials</Text>
             <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 60 }} mt={{ base: 4, lg: 0 }}>SMB, enterprise, and startup customers return to our custom software company because they’re happy with our work. Here is what they say about Strawberry Labs.</Text>
-            <SimpleSlider slidesToShow={1} horizontalMargin={4} arrows={true}>
-                {testimonials.map((testimonial) =>
-                (
-                    <Testimonial
-                        text1={testimonial.text1}
-                        text2={testimonial.text2}
-                        person={testimonial.person}
-                        country={testimonial.country}
-                        summary={testimonial.summary}
-                        industry={testimonial.industry}
-                        teamSize={testimonial.teamSize}
-                        duration={testimonial.duration}
-                        budget={testimonial.budget}
-                        technologies={testimonial.technologies}
-                    />
-                ))}
-            </SimpleSlider>
+            <Stack>
+                <SimpleSlider slidesToShow={1} horizontalMargin={4} arrows={true}>
+                    {testimonials.map((testimonial) =>
+                    (
+                        <Testimonial
+                            text1={testimonial.text1}
+                            text2={testimonial.text2}
+                            person={testimonial.person}
+                            country={testimonial.country}
+                            summary={testimonial.summary}
+                            industry={testimonial.industry}
+                            teamSize={testimonial.teamSize}
+                            duration={testimonial.duration}
+                            budget={testimonial.budget}
+                            technologies={testimonial.technologies}
+                        />
+                    ))}
+                </SimpleSlider>
+            </Stack>
         </Box>
     )
 }

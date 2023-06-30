@@ -21,6 +21,9 @@ import { Script } from 'gatsby';
 import { DatePicker } from "chakra-ui-date-input";
 
 import Samsung from '../../images/samsung-color.svg'
+import b2connect from '../../images/b2connect.png'
+import ecoventure2 from '../../images/ecoventure2.png'
+import takaful from '../../images/Takaful-Emarat-logo.png'
 
 export default function Section9() {
 
@@ -77,10 +80,10 @@ export default function Section9() {
                             </HStack>
                         </VStack>
                         <Text>Customers who trust us</Text>
-                        <HStack>
-                            <Image src={Samsung} />
-                            <Image src={Samsung} />
-                            <Image src={Samsung} />
+                        <HStack justify={'space-around'}>
+                            <Image src={b2connect} boxSize={20} />
+                            <Image src={takaful} boxSize={20} />
+                            <Image src={ecoventure2} boxSize={20} />
                         </HStack>
                     </VStack>
                     <VStack backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
