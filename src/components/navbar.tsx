@@ -15,13 +15,11 @@ import {
   ModalCloseButton,
   Button,
   keyframes,
-  Text
+  Text,
 } from "@chakra-ui/react";
-import {
-  HamburgerIcon,
-  CloseIcon,
-} from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
+import WebsiteLogo from "../images/website-logo.png";
 
 export default function Navbar({ modalOpen }: { modalOpen: any }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -39,8 +37,8 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
       -moz-box-shadow: 0 0 0 0 #fca4bd;
       box-shadow: 0 0 0 0 #fca4bd;
   }
-  `
-  const pulseAnim = `${pulse} 1.5s infinite`
+  `;
+  const pulseAnim = `${pulse} 1.5s infinite`;
 
   return (
     <>
@@ -57,17 +55,33 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
               <Image
                 height={12}
                 objectFit="cover"
-                src={"/static/website-logo.png"}
-                alt="Dan Abramov"
+                src={WebsiteLogo}
+                alt="Logo Goes Here"
               />
             </Box>
 
             <Flex alignItems={"center"} display={{ base: "none", md: "block" }}>
               <HStack spacing={8} alignItems={"center"}>
-                <AnchorLink to="/#TechStack"><Text fontSize={"xl"} fontWeight={"semibold"}>Tech Stack</Text></AnchorLink>
-                <AnchorLink to="/#Industries"><Text fontSize={"xl"} fontWeight={"semibold"}>Industries</Text></AnchorLink>
-                <AnchorLink to="/#Company"><Text fontSize={"xl"} fontWeight={"semibold"}>Company</Text></AnchorLink>
-                <AnchorLink to="/#Projects"><Text fontSize={"xl"} fontWeight={"semibold"}>Projects</Text></AnchorLink>
+                <AnchorLink to="/#TechStack">
+                  <Text fontSize={"xl"} fontWeight={"semibold"}>
+                    Tech Stack
+                  </Text>
+                </AnchorLink>
+                <AnchorLink to="/#Industries">
+                  <Text fontSize={"xl"} fontWeight={"semibold"}>
+                    Industries
+                  </Text>
+                </AnchorLink>
+                <AnchorLink to="/#Company">
+                  <Text fontSize={"xl"} fontWeight={"semibold"}>
+                    Company
+                  </Text>
+                </AnchorLink>
+                <AnchorLink to="/#Projects">
+                  <Text fontSize={"xl"} fontWeight={"semibold"}>
+                    Projects
+                  </Text>
+                </AnchorLink>
               </HStack>
             </Flex>
             <Box>
@@ -114,8 +128,8 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
               </Modal>
             </Box>
           </Flex>
-        </Box >
-      </Box >
+        </Box>
+      </Box>
     </>
   );
 }
