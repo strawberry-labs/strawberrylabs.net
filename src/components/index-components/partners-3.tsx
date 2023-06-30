@@ -23,7 +23,7 @@ import takaful from '../../images/Takaful-Emarat-logo.png'
 export default function section2() {
     return (
         <>
-            <Box backgroundColor='gray.200' py={10}>
+            <Box backgroundColor='gray.200' align={'center'} py={10}>
                 <Flex justify={'space-around'} maxW={'6xl'} display={{ base: 'none', 'md': 'flex' }}>
                     <Link href="https://google.com"><Image src={b2connect} boxSize={'24'} /></Link>
                     <Link href="https://google.com"><Image src={takaful} boxSize={'24'} /></Link>
@@ -33,7 +33,7 @@ export default function section2() {
                 </Flex >
             </Box>
 
-            <Box display={{ base: 'block', 'md': 'none' }} mt={5}>
+            <Box display={{ base: 'block', 'md': 'none' }} align={'center'} mt={5}>
                 <Text fontSize={'2xl'} mx={12}>Companies we've worked with</Text>
                 <SimpleSlider slidesToShow={3} arrows={false}>
                     <Link href="https://google.com"><Image src={b2connect} boxSize={'20'} /></Link>

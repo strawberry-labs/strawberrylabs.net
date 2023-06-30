@@ -29,6 +29,8 @@
     "framer-motion": "^10.1.0",
     "gatsby": "^5.7.0",
     "gatsby-plugin-anchor-links": "^1.2.1",
+    "gatsby-plugin-google-gtag": "^5.11.0",
+    "gatsby-plugin-manifest": "^5.11.0",
     "gatsby-plugin-mdx": "^5.10.0",
     "gatsby-source-filesystem": "^5.10.0",
     "gatsby-transformer-remark": "^6.10.0",
