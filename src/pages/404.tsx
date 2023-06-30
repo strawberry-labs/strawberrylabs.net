@@ -1,49 +1,33 @@
-import * as React from "react"
-import { Link, HeadFC, PageProps } from "gatsby"
+import React from "react";
+import { Box, VStack, Heading, Container, Flex } from "@chakra-ui/react";
+import Lottie from 'react-lottie';
+import Animation404 from '../lotties/404error'
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+import Layout from "../components/layout";
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage: React.FC<PageProps> = () => {
+function NotFoundPage() {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: Animation404,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Layout modalOpen={false}>
+      <VStack minH={'xl'} p={10} textAlign={"center"}>
+        <Box mt={28} alignItems={'center'}>
+          <Lottie
+            options={defaultOptions}
+            height={400}
+            width={400}
+          />
+        </Box>
+      </VStack>
+    </Layout >
   )
 }
 
 export default NotFoundPage
 
-export const Head: HeadFC = () => <title>Not found</title>

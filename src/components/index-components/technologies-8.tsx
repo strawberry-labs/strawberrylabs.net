@@ -75,7 +75,7 @@ export default function Section7() {
             <Box display={{ base: 'none', 'lg': 'block' }}>
                 <SimpleSlider slidesToShow={4} variableWidth={true} arrows={true} horizontalMargin={14}>
                     {techFilter === "" ? techData.map((item) => (
-                        <Box mx={5} my={1}>
+                        <Box mx={5} my={1} maxH='60'>
                             <VStack shadow={'base'} p={14} w={52}>
                                 <Image mb={6} boxSize={20} src={item.image} />
                                 <Link>{item.name}</Link>
@@ -83,7 +83,7 @@ export default function Section7() {
                         </Box>
                     )) :
                         techData.filter((item) => item.type.includes(techFilter)).map((item) => (
-                            <Box mx={5} my={1}>
+                            <Box mx={5} my={1} maxH='60'>
                                 <VStack shadow={'base'} p={14} w={52}>
                                     <Image mb={6} boxSize={20} src={item.image} />
                                     <Link>{item.name}</Link>
