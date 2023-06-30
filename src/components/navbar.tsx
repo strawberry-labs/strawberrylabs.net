@@ -66,7 +66,6 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
               <HStack spacing={8} alignItems={"center"}>
                 <AnchorLink to="/#TechStack"><Text fontSize={"xl"} fontWeight={"semibold"}>Tech Stack</Text></AnchorLink>
                 <AnchorLink to="/#Industries"><Text fontSize={"xl"} fontWeight={"semibold"}>Industries</Text></AnchorLink>
-                <AnchorLink to="/#Services"><Text fontSize={"xl"} fontWeight={"semibold"}>Services</Text></AnchorLink>
                 <AnchorLink to="/#Company"><Text fontSize={"xl"} fontWeight={"semibold"}>Company</Text></AnchorLink>
                 <AnchorLink to="/#Projects"><Text fontSize={"xl"} fontWeight={"semibold"}>Projects</Text></AnchorLink>
               </HStack>
@@ -75,6 +74,7 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
               <Button
                 color={"white"}
                 backgroundColor={"#D91E53"}
+                _hover={{ background: "#ba0236" }}
                 size={"lg"}
                 fontSize={"lg"}
                 fontWeight={"medium"}
@@ -106,7 +106,6 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
                   <ModalBody>
                     <AnchorLink to="/#TechStack">Tech Stack</AnchorLink>
                     <AnchorLink to="/#Industries">Industries</AnchorLink>
-                    <AnchorLink to="/#Services">Services</AnchorLink>
                     <AnchorLink to="/#Company">Company</AnchorLink>
                     <AnchorLink to="/#Projects">Projects</AnchorLink>
                   </ModalBody>

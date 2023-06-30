@@ -65,7 +65,7 @@ export default function Section7() {
         <Box id="TechStack">
             <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 6, lg: 12 }} mx={{ base: 10, lg: 20 }}>Strawberry Labs' set of technologies for software development</Text>
             <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 20 }} mt={{ base: 4, lg: 8 }}>Cooperate with competent and knowledgeable IT experts in desktop, web, and mobile software engineering. As a trusted tech and business partner, we apply the most advanced technologies, frameworks, and components to build software notable for both its solid and effective back-end with intuitive UI/UX.</Text>
-            <HStack spacing={{ lg: 5 }} mx={{ base: 10, lg: 20 }} mt={{ base: 6, lg: 12 }} wrap={'wrap'}>
+            <HStack spacing={{ base: 2, lg: 5 }} mx={{ base: 10, lg: 20 }} mt={{ base: 6, lg: 12 }}>
                 <Button onClick={() => setTechFilter('')} isActive={techFilter === "" ? true : false}>All</Button>
                 <Button onClick={() => setTechFilter('frontend')} isActive={techFilter === "frontend" ? true : false}>Frontend</Button>
                 <Button onClick={() => setTechFilter('backend')} isActive={techFilter === "backend" ? true : false}>Backend</Button>
@@ -94,14 +94,22 @@ export default function Section7() {
             </Box>
             <Box display={{ base: 'block', 'lg': 'none' }}>
                 <SimpleSlider slidesToShow={2} variableWidth={true} arrows={false} horizontalMargin={0}>
-                    {techData.filter((item) => item.type.includes(techFilter)).map((item) => (
-                        <Box mx={2} my={1}>
-                            <VStack shadow={'base'} p={{ base: 5, lg: 14 }} w={32}>
-                                <Image mb={6} src={Android} />
+                    {techFilter === "" ? techData.map((item) => (
+                        <Box mx={2} my={1} maxH='28'>
+                            <VStack shadow={'base'} p={14} w={44}>
+                                <Image mb={6} boxSize={20} src={item.image} />
                                 <Link>{item.name}</Link>
                             </VStack>
                         </Box>
-                    ))}
+                    )) :
+                        techData.filter((item) => item.type.includes(techFilter)).map((item) => (
+                            <Box mx={2} my={1} maxH='28'>
+                                <VStack shadow={'base'} p={14} w={44}>
+                                    <Image mb={6} boxSize={20} src={item.image} />
+                                    <Link>{item.name}</Link>
+                                </VStack>
+                            </Box>
+                        ))}
                 </SimpleSlider>
             </Box>
         </Box>

@@ -50,9 +50,9 @@ const testimonials = [
 
 export default function Section6() {
     return (
-        <Box>
+        <Box textAlign={'center'}>
             <Text fontSize={{ base: '3xl', lg: '5xl' }} mt={{ base: 8, lg: 16 }} mx={{ base: 10, lg: 20 }}>Testimonials</Text>
-            <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 20 }} mt={{ base: 4, lg: 0 }}>SMB, enterprise, and startup customers return to our custom software company because they’re happy with our work. Here is what they say about Strawberry Labs.</Text>
+            <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ base: 10, lg: 60 }} mt={{ base: 4, lg: 0 }}>SMB, enterprise, and startup customers return to our custom software company because they’re happy with our work. Here is what they say about Strawberry Labs.</Text>
             <SimpleSlider slidesToShow={1} horizontalMargin={4} arrows={true}>
                 {testimonials.map((testimonial) =>
                 (

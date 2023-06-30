@@ -49,82 +49,86 @@ export default function Section9() {
     }
 
     return (
-        <HStack my={{ base: '7', lg: '14' }}>
-            <Script src="https://www.google.com/recaptcha/api.js?render=6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX" />
-            <Box mx={{ base: '10', lg: '20' }} >
-                <Text fontSize={{ base: '3xl', lg: '5xl' }} display={{ base: 'block', md: 'none' }}>Request a free IT consultation</Text>
-                <Text fontSize={{ base: 'md', lg: 'xl' }} display={{ base: 'block', md: 'none' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
+        <VStack my={10}>
+            <Box mx={{ base: '10' }} mb={10} display={{ base: 'block', lg: 'none' }} textAlign={'center'}>
+                <Text fontSize={{ base: '3xl', lg: '5xl' }} >Request a free IT consultation</Text>
+                <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ md: 20 }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
             </Box>
-            <Flex mx={{ base: '10', lg: '20' }}>
-                <VStack width={'lg'} align={'start'} spacing={6} pr={20} display={{ base: 'none', lg: 'block' }}>
-                    <Text fontSize={{ base: '3xl', lg: '5xl' }}>Request a free IT consultation</Text>
-                    <Text fontSize={{ base: 'md', lg: 'xl' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
-                    <VStack my={4} spacing={4} align={'start'}>
-                        <Text>What happens next?</Text>
+            <HStack my={{ base: '7', lg: '14' }}>
+                <Script src="https://www.google.com/recaptcha/api.js?render=6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX" />
+
+                <Flex mx={{ base: '10', lg: '20' }}>
+                    <VStack width={'lg'} align={'start'} spacing={6} pr={20} display={{ base: 'none', lg: 'block' }}>
+                        <Text fontSize={{ base: '3xl', lg: '5xl' }}>Request a free IT consultation</Text>
+                        <Text fontSize={{ base: 'md', lg: 'xl' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
+                        <VStack my={4} spacing={4} align={'start'}>
+                            <Text>What happens next?</Text>
+                            <HStack>
+                                <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>1</Text>
+                                <Text>An expert contacts you shortly after having analyzed your business requirements;</Text>
+                            </HStack>
+                            <HStack>
+                                <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>2</Text>
+                                <Text>If required, we sign an NDA to ensure the highest privacy level;</Text>
+                            </HStack>
+                            <HStack>
+                                <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>3</Text>
+                                <Text>A Pre-Sales Manager submits a comprehensive project proposal. It may include estimates, timelines, lists of CVs, etc., for a particular situation.</Text>
+                            </HStack>
+                        </VStack>
+                        <Text>Customers who trust us</Text>
                         <HStack>
-                            <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>1</Text>
-                            <Text>An expert contacts you shortly after having analyzed your business requirements;</Text>
-                        </HStack>
-                        <HStack>
-                            <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>2</Text>
-                            <Text>If required, we sign an NDA to ensure the highest privacy level;</Text>
-                        </HStack>
-                        <HStack>
-                            <Text rounded={'3xl'} backgroundColor={"gray.200"} p={2} px={4} mr={6}>3</Text>
-                            <Text>A Pre-Sales Manager submits a comprehensive project proposal. It may include estimates, timelines, lists of CVs, etc., for a particular situation.</Text>
+                            <Image src={Samsung} />
+                            <Image src={Samsung} />
+                            <Image src={Samsung} />
                         </HStack>
                     </VStack>
-                    <Text>Customers who trust us</Text>
-                    <HStack>
-                        <Image src={Samsung} />
-                        <Image src={Samsung} />
-                        <Image src={Samsung} />
-                    </HStack>
-                </VStack>
-                <VStack width={'2xl'} backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
-                    <FormControl isRequired>
-                        <FormLabel>Industry</FormLabel>
-                        <Select variant='flushed' value={industry} onChange={(e) => setIndustry(e.target.value)} borderColor={'blackAlpha.400'}>
-                            <option value='Healthcare'>Healthcare</option>
-                            <option value='Financial Services'>Financial Services</option>
-                            <option value='Logistics and Supply chain'>Logistics & Supply chain</option>
-                            <option value='Media and Telecom'>Media & Telecom</option>
-                            <option value='Other'>Other</option>
-                        </Select>
-                    </FormControl>
-                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
-                        <FormControl isInvalid={isNameError} isRequired>
-                            <FormLabel>Name</FormLabel>
-                            <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
-                            <FormErrorMessage>Name can only contain letters followed by a space or a period</FormErrorMessage>
+                    <VStack backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
+                        <FormControl isRequired>
+                            <FormLabel>Industry</FormLabel>
+                            <Select variant='flushed' value={industry} onChange={(e) => setIndustry(e.target.value)} borderColor={'blackAlpha.400'}>
+                                <option value='Healthcare'>Healthcare</option>
+                                <option value='Financial Services'>Financial Services</option>
+                                <option value='Logistics and Supply chain'>Logistics & Supply chain</option>
+                                <option value='Media and Telecom'>Media & Telecom</option>
+                                <option value='Other'>Other</option>
+                            </Select>
                         </FormControl>
-                        <FormControl isRequired isInvalid={isEmailError}>
-                            <FormLabel>Email</FormLabel>
-                            <Input variant='flushed' value={email} onChange={(e) => setEmail(e.target.value)} borderColor={'blackAlpha.400'} />
-                            <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
-                        </FormControl>
-                    </Stack>
-                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5 }}>
-                        <FormControl isInvalid={isPhoneError} isRequired>
-                            <FormLabel>Phone</FormLabel>
-                            <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
-                            <FormErrorMessage>Enter a valid phone number</FormErrorMessage>
-                        </FormControl>
+                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
+                            <FormControl isInvalid={isNameError} isRequired>
+                                <FormLabel>Name</FormLabel>
+                                <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
+                                <FormErrorMessage>Name can only contain letters followed by a space or a period</FormErrorMessage>
+                            </FormControl>
+                            <FormControl isRequired isInvalid={isEmailError}>
+                                <FormLabel>Email</FormLabel>
+                                <Input variant='flushed' value={email} onChange={(e) => setEmail(e.target.value)} borderColor={'blackAlpha.400'} />
+                                <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
+                            </FormControl>
+                        </Stack>
+                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5 }}>
+                            <FormControl isInvalid={isPhoneError} isRequired>
+                                <FormLabel>Phone</FormLabel>
+                                <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
+                                <FormErrorMessage>Enter a valid phone number</FormErrorMessage>
+                            </FormControl>
+                            <FormControl>
+                                <FormLabel>Date</FormLabel>
+                                <DatePicker value={dateTime} onChange={(e) => setDateTime(e)} borderColor={'blackAlpha.400'} />
+                            </FormControl>
+                        </Stack>
                         <FormControl>
-                            <FormLabel>Date</FormLabel>
-                            <DatePicker value={dateTime} onChange={(e) => setDateTime(e)} borderColor={'blackAlpha.400'} />
+                            <FormLabel>Describe your Project</FormLabel>
+                            <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
                         </FormControl>
-                    </Stack>
-                    <FormControl>
-                        <FormLabel>Describe your Project</FormLabel>
-                        <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
-                    </FormControl>
-                    <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
-                        <Button backgroundColor={'yellow.300'} onClick={(formSubmit)} >Send Request</Button>
-                        <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
-                    </Stack>
-                </VStack>
-            </Flex>
-        </HStack>
+                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
+                            <Button backgroundColor={'yellow.300'} onClick={(formSubmit)} >Send Request</Button>
+                            <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
+                        </Stack>
+                    </VStack>
+                </Flex>
+            </HStack>
+        </VStack>
+
     )
 }

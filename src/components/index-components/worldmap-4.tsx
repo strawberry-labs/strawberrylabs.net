@@ -13,6 +13,7 @@ import WorldMap from '../../images/World_map_with_points.svg'
 export default function Section3() {
     return (
         <Flex
+            id="Company"
             h={{ base: 'lg', md: 'xl', lg: '100vh' }}
             backgroundImage={WorldMap}
             backgroundSize={'cover'}

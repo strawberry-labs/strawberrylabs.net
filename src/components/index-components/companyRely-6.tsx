@@ -23,8 +23,8 @@ import Company4 from "../../images/company4.webp"
 
 export default function Section5() {
   return (
-    <Box id="Projects" backgroundColor="gray.800" p={{ base: 8, md: 20 }}>
-      <Text textColor={"whiteAlpha.900"} fontSize={{ base: "3xl", md: "4xl" }}>
+    <Box id="Projects" backgroundColor="gray.800" p={{ base: 8, md: 20 }} textAlign={'center'}>
+      <Text textColor={"whiteAlpha.900"} fontSize={{ base: "3xl", md: "4xl" }} >
         Top Companies rely on Strawberry labs
       </Text>
       <Text textColor={"whiteAlpha.900"}>Latest Projects</Text>
