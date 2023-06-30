@@ -27,7 +27,7 @@ export default function Section4() {
         <VStack p={{ base: 8, md: 16 }} backgroundColor='gray.100' spacing={8} align={'center'}>
             <Text fontSize={'4xl'} mb="10" display={{ base: 'none', md: 'block' }}>Collaboration models with our custom software development company</Text>
             <Text fontSize={'3xl'} mb="10" display={{ base: 'block', md: 'none' }}>Collaboration models</Text>
-            <Stack direction={{ base: "column", lg: "row" }} maxW={'6xl'} spacing={2}>
+            <Stack direction={{ base: "column", lg: "row" }} maxW={'6xl'} spacing={4}>
                 <Card >
                     <CardBody>
                         <Stack spacing={4} align="start" m="4">
