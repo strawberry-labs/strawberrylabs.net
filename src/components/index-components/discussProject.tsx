@@ -112,7 +112,7 @@ export default function DiscussModalForm({
                                 <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
                             </FormControl>
                             <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
-                                <Button backgroundColor={'yellow.300'} onClick={(formSubmit)} >Send Request</Button>
+                                <Button backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(formSubmit)} >Send Request</Button>
                                 <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
                             </Stack>
                         </VStack>
