@@ -5,6 +5,7 @@ import {
     ModalOverlay,
     ModalContent,
     ModalBody,
+    ModalCloseButton,
     Flex,
     VStack,
     Text,
@@ -73,6 +74,7 @@ export default function DiscussModalForm({
         <Modal isOpen={isOpen} onClose={onClose} size="6xl">
             <ModalOverlay />
             <ModalContent>
+                <ModalCloseButton size={'lg'} color={{ lg: 'white' }} mt={5} mr={5} />
                 <ModalBody>
                     <Flex py={4}>
                         <VStack width={'2xl'} backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
