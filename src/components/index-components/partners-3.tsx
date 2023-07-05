@@ -23,26 +23,28 @@ import takaful from '../../images/Takaful-Emarat-logo.png'
 export default function section2() {
     return (
         <>
-            <Box backgroundColor='gray.200' display={{ base: 'none', 'md': 'flex' }} align={'center'} py={10}>
+            <Box backgroundColor='gray.200' display={{ base: 'none', 'md': 'block' }} align={'center'} py={10}>
                 <Flex justify={'space-around'} maxW={'6xl'} >
-                    <Link href="https://google.com"><Image src={b2connect} boxSize={'24'} /></Link>
-                    <Link href="https://google.com"><Image src={takaful} boxSize={'24'} /></Link>
-                    <Link href="https://google.com"><Image src={ecoventure2} boxSize={'24'} /></Link>
-                    <Link href="https://google.com"><Image src={logoImb} boxSize={'24'} /></Link>
-                    <Link href="https://google.com"><Image src={nationalwater} boxSize={'24'} /></Link>
-                </Flex >
+                    <Image src={b2connect} boxSize={'24'} />
+                    <Image src={takaful} boxSize={'24'} />
+                    <Image src={ecoventure2} boxSize={'24'} />
+                    <Image src={logoImb} boxSize={'24'} />
+                    <Image src={nationalwater} boxSize={'24'} />
+                    <Image src={ossian} boxSize={'24'} />
+                </Flex>
             </Box>
 
             <Box backgroundColor='gray.200' display={{ base: 'block', 'md': 'none' }} align={'center'} mt={5} py={4}>
                 <Text fontSize={'2xl'} mx={12}>Companies we've worked with</Text>
-                <SimpleSlider slidesToShow={3} arrows={false}>
-                    <Link href="https://google.com"><Image src={b2connect} boxSize={'20'} /></Link>
-                    <Link href="https://google.com"><Image src={takaful} boxSize={'20'} /></Link>
-                    <Link href="https://google.com"><Image src={ecoventure2} boxSize={'20'} /></Link>
-                    <Link href="https://google.com"><Image src={logoImb} boxSize={'20'} /></Link>
-                    <Link href="https://google.com"><Image src={nationalwater} boxSize={'20'} /></Link>
-                </SimpleSlider>
-            </Box>
+                <SimpleSlider slidesToShow={2} arrows={false}>
+                    <Box><Image src={b2connect} boxSize={'20'} /></Box>
+                    <Box><Image src={takaful} boxSize={'20'} /></Box>
+                    <Box><Image src={ecoventure2} boxSize={'20'} /></Box>
+                    <Box><Image src={logoImb} boxSize={'20'} /></Box>
+                    <Box><Image src={nationalwater} boxSize={'20'} /></Box>
+                    <Box><Image src={ossian} boxSize={'20'} /></Box>
+                </SimpleSlider >
+            </Box >
         </>
     )
 }
