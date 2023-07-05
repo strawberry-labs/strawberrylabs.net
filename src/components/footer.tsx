@@ -179,8 +179,8 @@ export default function Footer() {
                 </Accordion>
             </VStack>
             <Divider />
-            <VStack py={10} align={"center"}>
-                <Image src={WebsiteLogo} w={'xs'} />
+            <VStack py={4} align={"center"}>
+                <Image src={WebsiteLogo} w={'36'} />
             </VStack>
         </Box>
     )

@@ -21,7 +21,9 @@ import {
     FormLabel
 } from "@chakra-ui/react";
 
-import Samsung from "../../images/samsung-color.svg";
+import b2connect from '../../images/b2connect.png'
+import ecoventure2 from '../../images/ecoventure2.png'
+import takaful from '../../images/Takaful-Emarat-logo.png'
 
 import {
     ArrowForwardIcon,
@@ -148,10 +150,10 @@ export default function DiscussModalForm({
                             </Button>
                             <Divider />
                             <Text textColor={"whiteAlpha.900"}> Customers who trust us </Text>
-                            <HStack>
-                                <Image src={Samsung} />
-                                <Image src={Samsung} />
-                                <Image src={Samsung} />
+                            <HStack justify={'space-around'}>
+                                <Image src={b2connect} boxSize={20} />
+                                <Image src={ecoventure2} boxSize={20} />
+                                <Image src={takaful} boxSize={20} />
                             </HStack>
                         </VStack>
                     </Flex>
