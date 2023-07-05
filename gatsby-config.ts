@@ -1,13 +1,13 @@
-import type { GatsbyConfig } from "gatsby"
+import type { GatsbyConfig } from "gatsby";
 
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `strawberrylabs`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `Strawberry Labs | Custom Software Development`,
+    siteUrl: `https://strawberrylabs.net`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -15,7 +15,7 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     {
-      resolve: '@chakra-ui/gatsby-plugin',
+      resolve: "@chakra-ui/gatsby-plugin",
       options: {
         /**
          * @property {boolean} [resetCSS=true]
@@ -37,8 +37,8 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-anchor-links",
       options: {
-        offset: -100
-      }
+        offset: -100,
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -50,9 +50,9 @@ const config: GatsbyConfig = {
     `gatsby-transformer-remark`,
     "gatsby-plugin-mdx",
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: "gatsby-plugin-manifest",
       options: {
-        icon: 'src/images/fav-sl.png',
+        icon: "src/images/fav-sl.png",
       },
     },
     {
@@ -77,13 +77,12 @@ const config: GatsbyConfig = {
           // Avoids sending pageview hits from custom paths
           exclude: ["/preview/**", "/do-not-track/me/too/"],
           // Defaults to https://www.googletagmanager.com
-          origin: "YOUR_SELF_HOSTED_ORIGIN",
           // Delays processing pageview events on route update (in milliseconds)
           delayOnRouteUpdate: 0,
         },
       },
     },
   ],
-}
+};
 
-export default config
+export default config;
