@@ -43,15 +43,15 @@ export default function HoverBox({
         </Fade>
       </Box>
       <Box
-        shadow={"xl"}
-        width={{ base: "xs", md: "56" }}
+        shadow={"lg"}
+        width={{ base: "48", md: "56" }}
         mx={2}
-        py={8}
-        px={8}
+        py={4}
+        px={4}
         display={{ base: "block", lg: "none" }}
       >
         <Flex>
-          <Text fontSize={"4xl"}>{text1}</Text>
+          <Text fontSize={"3xl"}>{text1}</Text>
           <Text ml={3} mt={5}>
             {text2}
           </Text>
