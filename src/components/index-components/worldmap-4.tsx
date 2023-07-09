@@ -14,7 +14,7 @@ export default function Section3() {
     return (
         <Flex
             id="Company"
-            h={{ base: 'lg', md: 'xl', lg: '100vh' }}
+            h={{ base: 'xl', lg: '100vh' }}
             backgroundImage={WorldMap}
             backgroundSize={'cover'}
             backgroundPosition={'center center'}
@@ -23,7 +23,7 @@ export default function Section3() {
                 justify={'start'}
                 px={useBreakpointValue({ base: 0, md: 8 })}
                 bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
-                <Stack maxW={'2xl'} align={'flex-start'} spacing={10} ml={{ base: '8', md: '14' }}>
+                <Stack maxW={'2xl'} align={'flex-start'} spacing={10} mx={{ base: 4, md: 7 }}>
                     <Text
                         color={'white'}
                         fontWeight={200}
@@ -44,12 +44,12 @@ export default function Section3() {
                                 color={'white'}
                                 fontWeight={200}
                                 lineHeight={1.2}
-                                fontSize={useBreakpointValue({ base: '4xl', md: '5xl' })}>100%</Text>
+                                fontSize={useBreakpointValue({ base: '2xl', md: '5xl' })}>100%</Text>
                             <Text
                                 color={'white'}
                                 fontWeight={200}
                                 lineHeight={1.2}
-                                fontSize={useBreakpointValue({ base: '1xl', md: '1xl' })}
+                                fontSize={useBreakpointValue({ base: 'md', md: '1xl' })}
                                 width="20">GDPR compliant</Text>
                         </HStack>
                         <HStack>
@@ -57,26 +57,26 @@ export default function Section3() {
                                 color={'white'}
                                 fontWeight={200}
                                 lineHeight={1.2}
-                                fontSize={useBreakpointValue({ base: '4xl', md: '5xl' })}>4.9</Text>
+                                fontSize={useBreakpointValue({ base: '2xl', md: '5xl' })}>4.9</Text>
                             <Text
                                 color={'white'}
                                 fontWeight={200}
                                 lineHeight={1.2}
-                                fontSize={useBreakpointValue({ base: '1xl', md: '1xl' })}
-                                width="40">Clutch-rated software company</Text>
+                                fontSize={useBreakpointValue({ base: 'md', md: 'xl' })}
+                                width="24">Clutch-rated software company</Text>
                         </HStack>
                         <HStack>
                             <Text
                                 color={'white'}
                                 fontWeight={200}
                                 lineHeight={1.2}
-                                fontSize={useBreakpointValue({ base: '4xl', md: '5xl' })}>80%</Text>
+                                fontSize={useBreakpointValue({ base: '2xl', md: '5xl' })}>80%</Text>
                             <Text
                                 color={'white'}
                                 fontWeight={200}
                                 lineHeight={1.2}
-                                fontSize={useBreakpointValue({ base: '1xl', md: '1xl' })}
-                                width="40">of clients return for their next projects</Text>
+                                fontSize={useBreakpointValue({ base: 'md', md: 'xl' })}
+                                width="24">of clients return for their next projects</Text>
                         </HStack>
                     </HStack>
                 </Stack>
