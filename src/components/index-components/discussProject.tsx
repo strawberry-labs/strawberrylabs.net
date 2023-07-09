@@ -72,7 +72,7 @@ export default function DiscussModalForm({
                 <ModalCloseButton size={'lg'} color={{ lg: 'white' }} mt={5} mr={5} />
                 <ModalBody>
                     <Flex py={4}>
-                        <VStack width={'2xl'} backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
+                        <VStack backgroundColor={"gray.100"} align={'start'} spacing={{ base: 5, lg: 10 }} p={{ base: 7, lg: 14 }}>
                             <FormControl isRequired>
                                 <FormLabel>Industry</FormLabel>
                                 <Select variant='flushed' value={industry} onChange={(e) => setIndustry(e.target.value)} borderColor={'blackAlpha.400'}>
@@ -83,7 +83,7 @@ export default function DiscussModalForm({
                                     <option value='Other'>Other</option>
                                 </Select>
                             </FormControl>
-                            <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
+                            <Stack direction={'row'} spacing={{ base: 5, lg: 10 }}>
                                 <FormControl isInvalid={isNameError} isRequired>
                                     <FormLabel>Name</FormLabel>
                                     <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
@@ -95,7 +95,7 @@ export default function DiscussModalForm({
                                     <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
                                 </FormControl>
                             </Stack>
-                            <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5 }}>
+                            <Stack direction={{ base: 'column', lg: 'row' }}>
                                 <FormControl isInvalid={isPhoneError} isRequired>
                                     <FormLabel>Phone</FormLabel>
                                     <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
@@ -106,7 +106,7 @@ export default function DiscussModalForm({
                                 <FormLabel>Describe your Project</FormLabel>
                                 <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
                             </FormControl>
-                            <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
+                            <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5, lg: 10 }}>
                                 <Button backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(formSubmit)} >Send Request</Button>
                                 <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
                             </Stack>

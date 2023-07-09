@@ -52,14 +52,14 @@ export default function Section9() {
 
     return (
         <VStack my={10}>
-            <Box mx={{ base: '10' }} mb={10} display={{ base: 'block', lg: 'none' }} textAlign={'center'}>
+            <Box mx={{ base: '5', lg: 10 }} mb={{ base: 5, lg: 10 }} display={{ base: 'block', lg: 'none' }} textAlign={'center'}>
                 <Text fontSize={{ base: '3xl', lg: '5xl' }} >Request a free IT consultation</Text>
                 <Text fontSize={{ base: 'md', lg: 'xl' }} mx={{ md: 20 }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
             </Box>
             <HStack my={{ base: '7', lg: '14' }}>
                 <Script src="https://www.google.com/recaptcha/api.js?render=6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX" />
 
-                <Flex mx={{ base: '10', lg: '20' }}>
+                <Flex mx={{ base: 0, lg: '20' }}>
                     <VStack width={'lg'} align={'start'} spacing={6} pr={20} display={{ base: 'none', lg: 'block' }}>
                         <Text fontSize={{ base: '3xl', lg: '5xl' }}>Request a free IT consultation</Text>
                         <Text fontSize={{ base: 'md', lg: 'xl' }}>Fill out the form below to receive a free consultation and find out how Strawberry Labs can help your business grow.</Text>
@@ -85,7 +85,7 @@ export default function Section9() {
                             <Image src={ecoventure2} boxSize={20} />
                         </HStack>
                     </VStack>
-                    <VStack backgroundColor={"gray.100"} align={'start'} spacing={10} p={14}>
+                    <VStack backgroundColor={"gray.100"} align={'start'} spacing={{ base: 5, lg: 10 }} p={{ base: 7, lg: 14 }}>
                         <FormControl isRequired>
                             <FormLabel>Industry</FormLabel>
                             <Select variant='flushed' value={industry} onChange={(e) => setIndustry(e.target.value)} borderColor={'blackAlpha.400'}>
@@ -96,7 +96,7 @@ export default function Section9() {
                                 <option value='Other'>Other</option>
                             </Select>
                         </FormControl>
-                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
+                        <Stack direction={'row'} spacing={{ base: 5, lg: 10 }}>
                             <FormControl isInvalid={isNameError} isRequired>
                                 <FormLabel>Name</FormLabel>
                                 <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
@@ -108,7 +108,7 @@ export default function Section9() {
                                 <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
                             </FormControl>
                         </Stack>
-                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5 }}>
+                        <Stack direction={{ base: 'column', lg: 'row' }}>
                             <FormControl isInvalid={isPhoneError} isRequired>
                                 <FormLabel>Phone</FormLabel>
                                 <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
@@ -119,7 +119,7 @@ export default function Section9() {
                             <FormLabel>Describe your Project</FormLabel>
                             <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
                         </FormControl>
-                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 10 }}>
+                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5, lg: 10 }}>
                             <Button backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(formSubmit)} >Send Request</Button>
                             <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
                         </Stack>
