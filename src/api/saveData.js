@@ -13,7 +13,6 @@ const contactFormSchema = Schema({
     'name': String,
     'email': String,
     'phone': String,
-    'dateTime': Date,
     'description': String,
     'nda': Boolean
 })
@@ -66,7 +65,6 @@ const formatReqBody = (reqBody) => {
 <b>name:</b> ${reqJSON.name} %0A
 <b>email:</b> ${reqJSON.email} %0A
 <b>phone:</b> ${reqJSON.phone} %0A
-<b>dateTime:</b> ${reqJSON.dateTime} %0A
 <b>description:</b> ${reqJSON.description} %0A
 <b>nda:</b> ${reqJSON.nda}
 `
@@ -75,17 +73,15 @@ const formatReqBody = (reqBody) => {
 
 export default async function handler(req, res) {
 
-    /*
+
     const doc = new ContactForm(JSON.parse(req.body));
     await doc.save()
-    */
 
-    /*
     const sendEmailCommand = createSendEmailCommand(
-        "hi@chiragasarpota.com",
+        "shriramsekar11@gmail.com",
         "notification@strawberrylabs.net"
     );
-    
+
 
     try {
         return await sesClient.send(sendEmailCommand);
@@ -95,12 +91,10 @@ export default async function handler(req, res) {
         console.error(e)
         return e;
     }
-*/
-    /*
-        fetch(`https://api.telegram.org/bot6299109900:AAGV5zW_i6N39cYlvEx0Y2i-hK7tNE_vcPk/sendMessage?chat_id=-845129458&text=${formatReqBody(req.body)}&parse_mode=HTML`, {
-            method: "POST"
-        }).then((response) => console.log(response))
-    */
+
+    fetch(`https://api.telegram.org/bot6299109900:AAGV5zW_i6N39cYlvEx0Y2i-hK7tNE_vcPk/sendMessage?chat_id=-845129458&text=${formatReqBody(req.body)}&parse_mode=HTML`, {
+        method: "POST"
+    }).then((response) => console.log(response))
 
     let resp;
     console.log(JSON.parse(req.body))

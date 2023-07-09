@@ -31,7 +31,6 @@ export default function Section9() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
-    const [dateTime, setDateTime] = useState('')
     const [description, setDescription] = useState('')
     const [nda, setNda] = useState(false)
 
@@ -45,7 +44,7 @@ export default function Section9() {
                 fetch(`/api/saveData`, {
                     method: 'POST',
                     mode: "cors",
-                    body: JSON.stringify({ industry, name, email, phone, dateTime, description, nda, token })
+                    body: JSON.stringify({ industry, name, email, phone, description, nda, token })
                 })
             });
         });
@@ -114,10 +113,6 @@ export default function Section9() {
                                 <FormLabel>Phone</FormLabel>
                                 <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
                                 <FormErrorMessage>Enter a valid phone number</FormErrorMessage>
-                            </FormControl>
-                            <FormControl>
-                                <FormLabel>Date</FormLabel>
-                                <DatePicker value={dateTime} onChange={(e) => setDateTime(e)} borderColor={'blackAlpha.400'} />
                             </FormControl>
                         </Stack>
                         <FormControl>
