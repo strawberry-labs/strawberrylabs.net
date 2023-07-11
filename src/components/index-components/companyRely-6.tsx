@@ -198,7 +198,9 @@ export default function Section5() {
             company provides a detailed estimate for your IT initiative.
           </Text>
           <Link
-            backgroundColor={"yellow.400"}
+            backgroundColor={"#D91E53"}
+            _hover={{ background: "#ba0236" }}
+            color={'white'}
             size={"sm"}
             mr={{ lg: 4 }}
             p={4}
