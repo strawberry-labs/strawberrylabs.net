@@ -4,13 +4,13 @@ import React from "react";
 export default function Testimonial({ text1, text2, person, country, summary, industry, teamSize, duration, budget, technologies }: { text1: string, text2: string, person: string, country: string, summary: string, industry: string, teamSize: string, duration: string, budget: string, technologies: string[] }) {
     return (
         <HStack wrap='wrap' textColor='gray.600' p={{ lg: 10 }} justify={'center'}>
-            <VStack minW={'60'} maxW={'xl'} p={{ base: 4, lg: 10 }} spacing={{ base: 4, lg: 8 }} backgroundColor={'gray.100'}>
+            <VStack minW={'48'} maxW={'xl'} p={{ base: 4, lg: 10 }} spacing={{ base: 4, lg: 8 }} backgroundColor={'gray.100'}>
                 <Text textColor={'black'} fontSize={{ base: 'xl', lg: '2xl' }}>"{text1}"</Text>
                 <Divider colorScheme={'red'} />
                 <Text fontSize={{ base: 'xs', lg: 'md' }}>{text2}</Text>
                 <Text> - {person} </Text>
             </VStack>
-            <VStack p={{ base: 4, lg: 10 }} align={'end'} spacing={12}>
+            <VStack display={{ base: 'none', lg: 'block' }} p={{ base: 4, lg: 10 }} align={'end'} spacing={12}>
                 <Box textAlign={'end'}>
                     <Text textColor={'black'} fontWeight={'semibold'}>COUNTRY</Text>
                     <Text>{country}</Text>

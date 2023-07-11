@@ -44,7 +44,7 @@ function IndustryCard({ text1, text2 }: { text1: string, text2: string }) {
             <VStack shadow={"base"} align={'start'} p={6} _hover={{ shadow: "2xl" }}>
                 <Text fontSize={'2xl'}>{text1}</Text>
                 <Text>{text2}</Text>
-                <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "yellow.300" }}>See more</Button>
+                <Button rightIcon={<ArrowForwardIcon />} variant={'Link'} _hover={{ textColor: "#ba0236" }}>See more</Button>
             </VStack>
         </Box>
     )
