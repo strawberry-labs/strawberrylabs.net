@@ -75,7 +75,7 @@ export default async function handler(req, res) {
 
     console.log(JSON.parse(req.body))
     console.log(JSON.parse(req.body).token)
-    fetch(`https://www.google.com/recaptcha/api/siteverify?secret=6Lfoie0lAAAAAMS_0EzYmtVx_e3VmnDFNi2jLKEg&response=${JSON.parse(req.body).token}`, { method: "POST" })
+    fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${JSON.parse(req.body).token}`, { method: "POST" })
         .then((response) => response.json().then((r) => console.log(r)))
 
     const doc = new ContactForm(JSON.parse(req.body));

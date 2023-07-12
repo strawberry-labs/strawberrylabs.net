@@ -55,7 +55,7 @@ export default function DiscussModalForm({
 
     const formSubmit = () => {
         grecaptcha.ready(function () {
-            grecaptcha.execute('6Lfoie0lAAAAALq3cYlnw0covuSn-R572z4h03GX', { action: 'submit' }).then(function (token) {
+            grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(function (token) {
                 fetch(`/api/saveData`, {
                     method: 'POST',
                     mode: "cors",
