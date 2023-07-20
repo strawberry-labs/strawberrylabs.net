@@ -13,7 +13,9 @@ export default function Hero({ onOpen }: { onOpen: any }) {
     <Flex
       w={"full"}
       h={"65vh"}
-      backgroundImage={"url(https://gcdnb.pbrd.co/images/Gc3DKPYNNH7K.jpg)"}
+      backgroundImage={
+        "url(https://jkbox.b-cdn.net/strawberrylabs/strawberrylabs-hero.jpg)"
+      }
       backgroundSize={"cover"}
       backgroundPosition={"center center"}
       pt={70}
