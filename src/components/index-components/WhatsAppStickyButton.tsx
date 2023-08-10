@@ -8,16 +8,16 @@ const WhatsAppStickyButton = () => {
 
   const pulse = keyframes`
   0% {
-    -moz-box-shadow: 0 0 0 0 #D8F6E3;
-    box-shadow: 0 0 0 0 #D8F6E3;
+    -moz-box-shadow: 0 0 0 0 rgb(37, 211, 102, 0.4);
+    box-shadow: 0 0 0 0 rgb(37, 211, 102, 0.4);
   }
   70% {
-      -moz-box-shadow: 0 0 0 10px #D8F6E3;
-      box-shadow: 0 0 0 7px #D8F6E3;
+      -moz-box-shadow: 0 0 0 10px rgb(37, 211, 102, 0.4);
+      box-shadow: 0 0 0 7px rgb(37, 211, 102, 0.4);
   }
   100% {
-      -moz-box-shadow: 0 0 0 0 #D8F6E3;
-      box-shadow: 0 0 0 0 #D8F6E3;
+      -moz-box-shadow: 0 0 0 0 rgb(37, 211, 102, 0.4);
+      box-shadow: 0 0 0 0 rgb(37, 211, 102, 0.4);
   }
   `;
   const pulseAnimation = `${pulse} 1.5s infinite`;
