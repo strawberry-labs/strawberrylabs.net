@@ -18,7 +18,7 @@
   "dependencies": {
     "@aws-sdk/client-ses": "^3.321.1",
     "@chakra-ui/gatsby-plugin": "^3.1.1",
-    "@chakra-ui/icons": "^2.0.17",
+    "@chakra-ui/icons": "^2.1.0",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
