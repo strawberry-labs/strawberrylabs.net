@@ -3,7 +3,6 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
   IconButton,
   Image,
   useDisclosure,
@@ -20,6 +19,7 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import WebsiteLogo from "../images/website-logo.png";
+import { Link } from "gatsby";
 
 export default function Navbar({ modalOpen }: { modalOpen: any }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -52,12 +52,14 @@ export default function Navbar({ modalOpen }: { modalOpen: any }) {
         <Box bg="white" px={8} py={3} shadow={"md"} position={"static"}>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <Box>
-              <Image
-                height={12}
-                objectFit="cover"
-                src={WebsiteLogo}
-                alt="Logo Goes Here"
-              />
+              <Link to="/">
+                <Image
+                  height={12}
+                  objectFit="cover"
+                  src={WebsiteLogo}
+                  alt="Company Logo"
+                />
+              </Link>
             </Box>
 
             <Flex alignItems={"center"} display={{ base: "none", md: "block" }}>
