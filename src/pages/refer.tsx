@@ -158,7 +158,7 @@ export default function Pricing() {
                                         {
                                             createButtonLoading ?
                                                 (
-                                                    <Button loadingText={"Creating Link"} backgroundColor={"#D91E53"} isLoading _hover={{ background: "#ba0236" }} color={'white'} onClick={(submit)} />
+                                                    <Button loadingText={"Creating Link"} backgroundColor={"#D91E53"} isLoading _hover={{ background: "#ba0236" }} color={'white'} />
                                                 )
                                                 :
                                                 (
@@ -195,7 +195,7 @@ export default function Pricing() {
                                         {
                                             retrieveButtonLoading ?
                                                 (
-                                                    <Button isLoading loadingText={"Retriveing link"} backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(retrieve)}></Button>
+                                                    <Button isLoading loadingText={"Retriveing link"} backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'}></Button>
                                                 )
                                                 :
                                                 (

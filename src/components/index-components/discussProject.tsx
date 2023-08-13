@@ -19,7 +19,8 @@ import {
     Stack,
     FormControl,
     FormErrorMessage,
-    FormLabel
+    FormLabel,
+    useToast
 } from "@chakra-ui/react";
 
 import b2connect from '../../images/b2connect.png'
@@ -42,6 +43,9 @@ export default function DiscussModalForm({
     isOpen: any;
     onClose: any;
 }) {
+
+    const toast = useToast();
+
     const [industry, setIndustry] = useState("Healthcare");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -49,21 +53,61 @@ export default function DiscussModalForm({
     const [description, setDescription] = useState("");
     const [nda, setNda] = useState(false);
 
+    const [submitButtonLoading, setSubmitButtonLoading] = useState(false)
+
     const isNameError = name != '' && !/^([a-zA-Z]+(\.|\s)*)$/.test(name);
     const isEmailError = email != '' && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
     const isPhoneError = phone != '' && !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/.test(phone);
 
     const formSubmit = () => {
         grecaptcha.ready(function () {
-            grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(function (token) {
-                fetch(`/api/saveData`, {
-                    method: 'POST',
-                    mode: "cors",
-                    body: JSON.stringify({ industry, name, email, phone, description, nda, token })
-                })
+            grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(async function (token: any) {
+                if (!isNameError && !isEmailError && !isPhoneError && name != '' && email != '' && phone != '') {
+                    try {
+                        setSubmitButtonLoading(true)
+                        let response = await fetch(`/api/saveData`, {
+                            method: 'POST',
+                            mode: "cors",
+                            body: JSON.stringify({ industry, name, email, phone, description, nda, token })
+                        })
+                        setSubmitButtonLoading(false)
+
+                        //reset form
+                        setName('')
+                        setEmail('')
+                        setPhone('')
+                        setDescription('')
+                        setNda(false)
+
+                        toast({
+                            title: 'Form Submitted Successfully!.',
+                            description: "We'll get back to you ASAP. Thank you!",
+                            status: 'success',
+                            duration: 9000,
+                            isClosable: true,
+                        })
+                    } catch (e) {
+                        toast({
+                            title: 'Server Error.',
+                            description: "There might be issue with our servers. Please try again later.",
+                            status: 'error',
+                            duration: 9000,
+                            isClosable: true,
+                        })
+                    }
+
+                } else {
+                    toast({
+                        title: 'Required Fields not Filled.',
+                        description: "Please fill all the required (starred) fields before submission",
+                        status: 'error',
+                        duration: 9000,
+                        isClosable: true,
+                    })
+                }
             });
         });
-    };
+    }
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} size="6xl">
@@ -107,7 +151,15 @@ export default function DiscussModalForm({
                                 <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
                             </FormControl>
                             <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5, lg: 10 }}>
-                                <Button backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(formSubmit)} >Send Request</Button>
+                                {
+                                    submitButtonLoading ?
+                                        (
+                                            <Button isLoading loadingText="Sending" backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'}></Button>
+                                        ) :
+                                        (
+                                            <Button backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(formSubmit)} >Send Request</Button>
+                                        )
+                                }
                                 <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
                             </Stack>
                         </VStack>
