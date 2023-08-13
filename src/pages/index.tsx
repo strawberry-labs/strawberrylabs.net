@@ -1,6 +1,6 @@
 import React from "react";
-
 import { useDisclosure } from "@chakra-ui/react";
+import Cookies from 'universal-cookie';
 
 import Layout from "../components/layout";
 
@@ -19,6 +19,14 @@ import DiscussModalForm from "../components/index-components/discussProject";
 
 export default function Index() {
   const { isOpen, onOpen, onClose } = useDisclosure(); // For modal
+
+  let params = new URLSearchParams(document.location.search);
+  let referrer = params.get("referrerId");
+  const cookies = new Cookies();
+  console.log(cookies.get("referrerId") == "null")
+  console.log(referrer)
+  if (cookies.get("referrerId") == "null" && referrer != null)
+    cookies.set('referrerId', referrer, { path: '/' });
 
   return (
     <Layout modalOpen={onOpen}>

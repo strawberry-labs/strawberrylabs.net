@@ -40,7 +40,7 @@ export default function Section9() {
 
     const formSubmit = () => {
         grecaptcha.ready(function () {
-            grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(function (token) {
+            grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(function (token: any) {
                 fetch(`/api/saveData`, {
                     method: 'POST',
                     mode: "cors",
