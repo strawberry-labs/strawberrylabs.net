@@ -39,9 +39,13 @@ import { DatePicker } from "chakra-ui-date-input";
 export default function DiscussModalForm({
     isOpen,
     onClose,
+    formSubmitted,
+    setFormSubmitted
 }: {
     isOpen: any;
     onClose: any;
+    formSubmitted: Boolean,
+    setFormSubmitted: Function
 }) {
 
     const toast = useToast();
@@ -63,21 +67,22 @@ export default function DiscussModalForm({
         grecaptcha.ready(function () {
             grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(async function (token: any) {
                 if (!isNameError && !isEmailError && !isPhoneError && name != '' && email != '' && phone != '') {
-                    try {
-                        setSubmitButtonLoading(true)
-                        let response = await fetch(`/api/saveData`, {
-                            method: 'POST',
-                            mode: "cors",
-                            body: JSON.stringify({ industry, name, email, phone, description, nda, token })
-                        })
-                        setSubmitButtonLoading(false)
+                    setSubmitButtonLoading(true)
+                    let response = await fetch(`/api/saveData`, {
+                        method: 'POST',
+                        mode: "cors",
+                        body: JSON.stringify({ industry, name, email, phone, description, nda, token })
+                    })
+                    setSubmitButtonLoading(false)
 
+                    if (response.status == 200) {
                         //reset form
                         setName('')
                         setEmail('')
                         setPhone('')
                         setDescription('')
                         setNda(false)
+                        setFormSubmitted(true)
 
                         toast({
                             title: 'Form Submitted Successfully!.',
@@ -86,7 +91,7 @@ export default function DiscussModalForm({
                             duration: 9000,
                             isClosable: true,
                         })
-                    } catch (e) {
+                    } else {
                         toast({
                             title: 'Server Error.',
                             description: "There might be issue with our servers. Please try again later.",
@@ -117,51 +122,62 @@ export default function DiscussModalForm({
                 <ModalBody>
                     <Flex py={4}>
                         <VStack backgroundColor={"gray.100"} align={'start'} spacing={{ base: 5, lg: 10 }} p={{ base: 7, lg: 14 }}>
-                            <FormControl isRequired>
-                                <FormLabel>Industry</FormLabel>
-                                <Select variant='flushed' value={industry} onChange={(e) => setIndustry(e.target.value)} borderColor={'blackAlpha.400'}>
-                                    <option value='Healthcare'>Healthcare</option>
-                                    <option value='Financial Services'>Financial Services</option>
-                                    <option value='Logistics and Supply chain'>Logistics & Supply chain</option>
-                                    <option value='Media and Telecom'>Media & Telecom</option>
-                                    <option value='Other'>Other</option>
-                                </Select>
-                            </FormControl>
-                            <Stack direction={'row'} spacing={{ base: 5, lg: 10 }}>
-                                <FormControl isInvalid={isNameError} isRequired>
-                                    <FormLabel>Name</FormLabel>
-                                    <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
-                                    <FormErrorMessage>Name can only contain letters followed by a space or a period</FormErrorMessage>
-                                </FormControl>
-                                <FormControl isRequired isInvalid={isEmailError}>
-                                    <FormLabel>Email</FormLabel>
-                                    <Input variant='flushed' value={email} onChange={(e) => setEmail(e.target.value)} borderColor={'blackAlpha.400'} />
-                                    <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
-                                </FormControl>
-                            </Stack>
-                            <Stack direction={{ base: 'column', lg: 'row' }}>
-                                <FormControl isInvalid={isPhoneError} isRequired>
-                                    <FormLabel>Phone</FormLabel>
-                                    <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
-                                    <FormErrorMessage>Enter a valid phone number</FormErrorMessage>
-                                </FormControl>
-                            </Stack>
-                            <FormControl>
-                                <FormLabel>Describe your Project</FormLabel>
-                                <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
-                            </FormControl>
-                            <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5, lg: 10 }}>
-                                {
-                                    submitButtonLoading ?
-                                        (
-                                            <Button isLoading loadingText="Sending" backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'}></Button>
-                                        ) :
-                                        (
-                                            <Button backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(formSubmit)} >Send Request</Button>
-                                        )
-                                }
-                                <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
-                            </Stack>
+                            {
+                                formSubmitted ?
+                                    <VStack justify={'center'} textAlign={'center'} height={'full'} px={{ base: 2, lg: 28 }}>
+                                        <Text>Form Submitted Successfully!</Text>
+                                        <Text>We'll get back to you ASAP. Thank you!</Text>
+                                    </VStack>
+                                    :
+                                    <>
+                                        <FormControl isRequired>
+                                            <FormLabel>Industry</FormLabel>
+                                            <Select variant='flushed' value={industry} onChange={(e) => setIndustry(e.target.value)} borderColor={'blackAlpha.400'}>
+                                                <option value='Healthcare'>Healthcare</option>
+                                                <option value='Financial Services'>Financial Services</option>
+                                                <option value='Logistics and Supply chain'>Logistics & Supply chain</option>
+                                                <option value='Media and Telecom'>Media & Telecom</option>
+                                                <option value='Other'>Other</option>
+                                            </Select>
+                                        </FormControl>
+                                        <Stack direction={'row'} spacing={{ base: 5, lg: 10 }}>
+                                            <FormControl isInvalid={isNameError} isRequired>
+                                                <FormLabel>Name</FormLabel>
+                                                <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
+                                                <FormErrorMessage>Name can only contain letters followed by a space or a period</FormErrorMessage>
+                                            </FormControl>
+                                            <FormControl isRequired isInvalid={isEmailError}>
+                                                <FormLabel>Email</FormLabel>
+                                                <Input variant='flushed' value={email} onChange={(e) => setEmail(e.target.value)} borderColor={'blackAlpha.400'} />
+                                                <FormErrorMessage>Enter email in the correct format: xyz@abc.com</FormErrorMessage>
+                                            </FormControl>
+                                        </Stack>
+                                        <Stack direction={{ base: 'column', lg: 'row' }}>
+                                            <FormControl isInvalid={isPhoneError} isRequired>
+                                                <FormLabel>Phone</FormLabel>
+                                                <Input variant='flushed' value={phone} onChange={(e) => setPhone(e.target.value)} borderColor={'blackAlpha.400'} />
+                                                <FormErrorMessage>Enter a valid phone number</FormErrorMessage>
+                                            </FormControl>
+                                        </Stack>
+                                        <FormControl>
+                                            <FormLabel>Describe your Project</FormLabel>
+                                            <Input variant='flushed' value={description} onChange={(e) => setDescription(e.target.value)} borderColor={'blackAlpha.400'} />
+                                        </FormControl>
+                                        <Stack direction={{ base: 'column', lg: 'row' }} spacing={{ base: 5, lg: 10 }}>
+                                            {
+                                                submitButtonLoading ?
+                                                    (
+                                                        <Button isLoading loadingText="Sending" backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'}></Button>
+                                                    ) :
+                                                    (
+                                                        <Button backgroundColor={"#D91E53"} _hover={{ background: "#ba0236" }} color={'white'} onClick={(formSubmit)} >Send Request</Button>
+                                                    )
+                                            }
+                                            <Checkbox onChange={() => setNda(!nda)} checked={nda}>I want to protect my data by signing an NDA</Checkbox>
+                                        </Stack>
+                                    </>
+                            }
+
                         </VStack>
                         <VStack
                             width={"xl"}

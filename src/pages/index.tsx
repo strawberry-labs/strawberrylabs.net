@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDisclosure } from "@chakra-ui/react";
 import Cookies from 'universal-cookie';
 
@@ -20,6 +20,8 @@ import DiscussModalForm from "../components/index-components/discussProject";
 export default function Index() {
   const { isOpen, onOpen, onClose } = useDisclosure(); // For modal
 
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   let params = new URLSearchParams(document.location.search);
   let referrer = params.get("referrerId");
   const cookies = new Cookies();
@@ -40,8 +42,8 @@ export default function Index() {
       <Section6 />
       <Section7 />
       <Section8 />
-      <Section9 />
-      <DiscussModalForm isOpen={isOpen} onClose={onClose} />
+      <Section9 formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />
+      <DiscussModalForm isOpen={isOpen} onClose={onClose} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />
     </Layout>
   );
 }
