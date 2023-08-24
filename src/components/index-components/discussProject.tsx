@@ -207,7 +207,7 @@ export default function DiscussModalForm({
                                 textColor={"whiteAlpha.900"}
                                 _hover={{ textColor: "#D91E53" }}
                             >
-                                enquiries@strawberrylabs.net
+                                admin@strawberrylabs.net
                             </Button>
                             <Divider />
                             <Text textColor={"whiteAlpha.900"}> Customers who trust us </Text>
