@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDisclosure } from "@chakra-ui/react";
-import Cookies from 'universal-cookie';
+import Cookies from "universal-cookie";
 
 import Layout from "../components/layout";
 
@@ -22,13 +22,20 @@ export default function Index() {
 
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-  let params = new URLSearchParams(document.location.search);
-  let referrer = params.get("referrerId");
   const cookies = new Cookies();
-  console.log(cookies.get("referrerId") == "null")
-  console.log(referrer)
-  if (cookies.get("referrerId") == "null" && referrer != null)
-    cookies.set('referrerId', referrer, { path: '/' });
+
+  useEffect(() => {
+    // This code will only run on the client side
+    let params = new URLSearchParams(window.location.search);
+    let referrer = params.get("referrerId");
+
+    console.log(cookies.get("referrerId") === "null");
+    console.log(referrer);
+
+    if (cookies.get("referrerId") === "null" && referrer !== null) {
+      cookies.set("referrerId", referrer, { path: "/" });
+    }
+  }, []);
 
   return (
     <Layout modalOpen={onOpen}>
@@ -42,8 +49,16 @@ export default function Index() {
       <Section6 />
       <Section7 />
       <Section8 />
-      <Section9 formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />
-      <DiscussModalForm isOpen={isOpen} onClose={onClose} formSubmitted={formSubmitted} setFormSubmitted={setFormSubmitted} />
+      <Section9
+        formSubmitted={formSubmitted}
+        setFormSubmitted={setFormSubmitted}
+      />
+      <DiscussModalForm
+        isOpen={isOpen}
+        onClose={onClose}
+        formSubmitted={formSubmitted}
+        setFormSubmitted={setFormSubmitted}
+      />
     </Layout>
   );
 }
