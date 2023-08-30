@@ -95,7 +95,7 @@ export default function DiscussModalForm({
                             title: 'Form Submitted Successfully!.',
                             description: "We'll get back to you ASAP. Thank you!",
                             status: 'success',
-                            duration: 9000,
+                            duration: 5000,
                             isClosable: true,
                         })
 
@@ -105,7 +105,7 @@ export default function DiscussModalForm({
                             title: 'Server Error.',
                             description: "There might be issue with our servers. Please try again later.",
                             status: 'error',
-                            duration: 9000,
+                            duration: 5000,
                             isClosable: true,
                         })
                     }
@@ -115,7 +115,7 @@ export default function DiscussModalForm({
                         title: 'Required Fields not Filled.',
                         description: "Please fill all the required (starred) fields before submission",
                         status: 'error',
-                        duration: 9000,
+                        duration: 5000,
                         isClosable: true,
                     })
                 }

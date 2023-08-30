@@ -61,13 +61,24 @@ mongoose.connect(
 
 const ContactForm = mongoose.model("contactform", contactFormSchema);
 
+const referrerSchema = Schema({
+    referrerId: String,
+    orgName: String,
+    email: String,
+    status: String,
+})
+
+const Referrer = mongoose.model('referrer', referrerSchema)
+
 const formatReqBody = (data) => {
     return `<b>industry:</b> ${data.industry} %0A
 <b>name:</b> ${data.name} %0A
 <b>email:</b> ${data.email} %0A
 <b>phone:</b> ${data.phone} %0A
 <b>description:</b> ${data.description} %0A
-<b>nda:</b> ${data.nda}
+<b>nda:</b> ${data.nda} %0A
+<b>referrer organization:</b> ${data.referrerOrganizationName} %0A
+<b>referrer email:</b> ${data.referrerEmail}
 `;
 };
 
@@ -77,46 +88,66 @@ export default async function handler(req, res) {
 
     let { token, ...data } = JSON.parse(req.body)
 
-    fetch(
+    let telegramData = data;
+
+    let captcha = await fetch(
         `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY
         }&response=${token}`,
         { method: "POST" }
-    ).then((response) => response.json().then((r) => console.log(r)))
-        .catch((err) => console.log(err))
+    )
 
-    const doc = new ContactForm(data);
+    let captchaJson = await captcha.json()
 
-    if (cookies.get("referrerId") != null)
-        doc.referrerId = cookies.get("referrerId")
+    if (captchaJson.success) {
+        const doc = new ContactForm(data);
 
-    try {
-        await doc.save();
-    }
-    catch (e) {
-        console.log(e)
-    }
+        if (cookies.get("referrerId") != null) {
+            //validate referrerId first
+            let refId = cookies.get("referrerId")
+            let referrer = await Referrer.findOne({ referrerId: refId }).exec()
+            console.log(`refId: ${refId}`)
+            console.log(`referrer: ${JSON.stringify(referrer)}`)
 
-    fetch(
-        `https://api.telegram.org/bot6299109900:AAGV5zW_i6N39cYlvEx0Y2i-hK7tNE_vcPk/sendMessage?chat_id=-845129458&text=${formatReqBody(
-            data
-        )}&parse_mode=HTML`,
-        {
-            method: "POST",
+            if (referrer != null) {
+                doc.referrerId = refId
+                telegramData.referrerOrganizationName = referrer.orgName
+                telegramData.referrerEmail = referrer.email
+            }
         }
-    ).then((response) => console.log(response));
 
-    const sendEmailCommand = createSendEmailCommand(
-        "shriramsekar11@gmail.com",
-        "notification@strawberrylabs.net"
-    );
+        try {
+            await doc.save();
+        }
+        catch (e) {
+            res.status(500).send()
+        }
 
-    try {
-        return await sesClient.send(sendEmailCommand);
-        console.log("done");
-    } catch (e) {
-        console.error("Failed to send email.");
-        console.error(e);
+        fetch(
+            `https://api.telegram.org/bot6299109900:AAGV5zW_i6N39cYlvEx0Y2i-hK7tNE_vcPk/sendMessage?chat_id=-845129458&text=${formatReqBody(
+                telegramData
+            )}&parse_mode=HTML`,
+            {
+                method: "POST",
+            }
+        ).then((response) => console.log(response));
+
+        const sendEmailCommand = createSendEmailCommand(
+            "shriramsekar11@gmail.com",
+            "notification@strawberrylabs.net"
+        );
+
+        try {
+            return await sesClient.send(sendEmailCommand);
+            console.log("done");
+        } catch (e) {
+            console.error("Failed to send email.");
+            console.error(e);
+        }
+
+        res.status(200).send();
+    } else {
+        res.status(500).send();
     }
 
-    res.status(200).send();
+
 }

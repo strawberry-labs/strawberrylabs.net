@@ -52,24 +52,27 @@ export default function Pricing() {
             cleanedEmail = cleanedEmail.trim();
             grecaptcha.ready(function () {
                 grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(async function (token: any) {
-                    try {
-                        let response = await fetch(`/api/createReferrerLink`, {
-                            method: 'POST',
-                            mode: "cors",
-                            body: JSON.stringify({ orgName, email: cleanedEmail, token })
-                        })
+                    let response = await fetch(`/api/createReferrerLink`, {
+                        method: 'POST',
+                        mode: "cors",
+                        body: JSON.stringify({ orgName, email: cleanedEmail, token })
+                    })
 
+                    if (response.status == 200) {
                         let data = await response.json()
 
                         setReferralLinkCreated(data.referrerLink)
                         setEmail("")
                         setOrgName("")
-                    } catch (e) {
+                    } else {
+                        setCreateButtonLoading(false)
+                        setEmail("")
+                        setOrgName("")
                         toast({
                             title: 'Server Error.',
                             description: "There might be issue with our servers. Please try again later.",
                             status: 'error',
-                            duration: 9000,
+                            duration: 5000,
                             isClosable: true,
                         })
                     }
@@ -89,13 +92,13 @@ export default function Pricing() {
             cleanedEmail = cleanedEmail.trim();
             grecaptcha.ready(function () {
                 grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(async function (token: any) {
-                    try {
-                        let response = await fetch(`/api/retrieveReferrerLink`, {
-                            method: 'POST',
-                            mode: "cors",
-                            body: JSON.stringify({ retrieveEmail: cleanedEmail, token })
-                        })
+                    let response = await fetch(`/api/retrieveReferrerLink`, {
+                        method: 'POST',
+                        mode: "cors",
+                        body: JSON.stringify({ retrieveEmail: cleanedEmail, token })
+                    })
 
+                    if (response.status == 200) {
                         let data = await response.json()
 
                         if (data.length > 0) {
@@ -105,18 +108,20 @@ export default function Pricing() {
                                 title: 'Email not found.',
                                 description: "There were no links associated to this email.",
                                 status: 'error',
-                                duration: 9000,
+                                duration: 5000,
                                 isClosable: true,
                             })
                         }
                         setRetrieveButtonLoading(false)
                         setRetrieveEmail("")
-                    } catch (e) {
+                    } else {
+                        setRetrieveButtonLoading(false)
+                        setRetrieveEmail("")
                         toast({
                             title: 'Server Error.',
                             description: "There might be issue with our servers. Please try again later.",
                             status: 'error',
-                            duration: 9000,
+                            duration: 5000,
                             isClosable: true,
                         })
                     }

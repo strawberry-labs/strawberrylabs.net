@@ -32,7 +32,7 @@ export default function Index() {
     console.log(cookies.get("referrerId") === "null");
     console.log(referrer);
 
-    if (cookies.get("referrerId") === "null" && referrer !== null) {
+    if (referrer !== null) {
       cookies.set("referrerId", referrer, { path: "/" });
     }
   }, []);
@@ -56,8 +56,6 @@ export default function Index() {
       <DiscussModalForm
         isOpen={isOpen}
         onClose={onClose}
-        formSubmitted={formSubmitted}
-        setFormSubmitted={setFormSubmitted}
       />
     </Layout>
   );

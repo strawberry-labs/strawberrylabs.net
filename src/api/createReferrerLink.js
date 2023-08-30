@@ -7,7 +7,7 @@ mongoose.connect(
 
 const referrerSchema = Schema({
     referrerId: String,
-    organizationName: String,
+    orgName: String,
     email: String,
     status: String,
 })
@@ -17,20 +17,32 @@ const Referrer = mongoose.model('referrer', referrerSchema)
 export default async function handler(req, res) {
     let data = JSON.parse(req.body)
 
-    fetch(
+    let captcha = await fetch(
         `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY
         }&response=${data.token}`,
         { method: "POST" }
-    ).then((response) => response.json().then((r) => console.log(r)));
+    )
 
-    const referrerId = randomUUID();
+    let captchaJson = await captcha.json()
 
-    data.referrerId = referrerId
-    data.status = "active"
+    if (captchaJson.success) {
+        const referrerId = randomUUID();
 
-    const doc = new Referrer(data)
-    await doc.save()
+        data.referrerId = referrerId
+        data.status = "active"
 
-    const referrerLink = `https://strawberrylabs.net?referrerId=${referrerId}`
-    res.status(200).json({ referrerLink: referrerLink })
+        const doc = new Referrer(data)
+        try {
+            await doc.save()
+        } catch (e) {
+            res.status(500).send()
+        }
+
+        const referrerLink = `https://strawberrylabs.net?referrerId=${referrerId}`
+        res.status(200).json({ referrerLink: referrerLink })
+    } else {
+        res.status(500).send()
+    }
+
+
 }
