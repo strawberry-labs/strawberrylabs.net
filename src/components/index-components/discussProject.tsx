@@ -39,16 +39,14 @@ import { DatePicker } from "chakra-ui-date-input";
 export default function DiscussModalForm({
     isOpen,
     onClose,
-    formSubmitted,
-    setFormSubmitted
 }: {
     isOpen: any;
     onClose: any;
-    formSubmitted: Boolean,
-    setFormSubmitted: Function
 }) {
 
     const toast = useToast();
+
+    const [formSubmitted, setFormSubmitted] = useState(false)
 
     const [industry, setIndustry] = useState("Healthcare");
     const [name, setName] = useState("");
@@ -61,6 +59,16 @@ export default function DiscussModalForm({
 
     const isEmailError = email != '' && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
     const isPhoneError = phone != '' && !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/.test(phone);
+
+    const resetOnClose = () => {
+        setName('')
+        setEmail('')
+        setPhone('')
+        setDescription('')
+        setNda(false)
+        setFormSubmitted(false)
+        onClose()
+    }
 
     const formSubmit = () => {
         grecaptcha.ready(function () {
@@ -90,6 +98,8 @@ export default function DiscussModalForm({
                             duration: 9000,
                             isClosable: true,
                         })
+
+                        setTimeout(() => { resetOnClose() }, 5000);
                     } else {
                         toast({
                             title: 'Server Error.',
@@ -114,7 +124,7 @@ export default function DiscussModalForm({
     }
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} size="6xl">
+        <Modal isOpen={isOpen} onClose={resetOnClose} size="6xl">
             <ModalOverlay />
             <ModalContent>
                 <ModalCloseButton size={'lg'} color={{ lg: 'white' }} mt={5} mr={5} />

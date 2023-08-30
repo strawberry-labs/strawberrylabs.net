@@ -96,6 +96,7 @@ export default async function handler(req, res) {
         console.log(e)
     }
 
+    /*
     fetch(
         `https://api.telegram.org/bot6299109900:AAGV5zW_i6N39cYlvEx0Y2i-hK7tNE_vcPk/sendMessage?chat_id=-845129458&text=${formatReqBody(
             data
@@ -117,6 +118,6 @@ export default async function handler(req, res) {
         console.error("Failed to send email.");
         console.error(e);
     }
-
+*/
     res.status(200).send();
 }
