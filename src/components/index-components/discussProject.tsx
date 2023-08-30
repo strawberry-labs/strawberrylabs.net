@@ -59,14 +59,13 @@ export default function DiscussModalForm({
 
     const [submitButtonLoading, setSubmitButtonLoading] = useState(false)
 
-    const isNameError = name != '' && !/^([a-zA-Z]+(\.|\s)*)$/.test(name);
     const isEmailError = email != '' && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
     const isPhoneError = phone != '' && !/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,7}$/.test(phone);
 
     const formSubmit = () => {
         grecaptcha.ready(function () {
             grecaptcha.execute(`${process.env.GATSBY_RECAPTCHA_SITE_KEY}`, { action: 'submit' }).then(async function (token: any) {
-                if (!isNameError && !isEmailError && !isPhoneError && name != '' && email != '' && phone != '') {
+                if (!isEmailError && !isPhoneError && name != '' && email != '' && phone != '') {
                     setSubmitButtonLoading(true)
                     let response = await fetch(`/api/saveData`, {
                         method: 'POST',
@@ -141,10 +140,9 @@ export default function DiscussModalForm({
                                             </Select>
                                         </FormControl>
                                         <Stack direction={'row'} spacing={{ base: 5, lg: 10 }}>
-                                            <FormControl isInvalid={isNameError} isRequired>
+                                            <FormControl isRequired>
                                                 <FormLabel>Name</FormLabel>
                                                 <Input variant='flushed' value={name} onChange={(e) => setName(e.target.value)} borderColor={'blackAlpha.400'} />
-                                                <FormErrorMessage>Name can only contain letters followed by a space or a period</FormErrorMessage>
                                             </FormControl>
                                             <FormControl isRequired isInvalid={isEmailError}>
                                                 <FormLabel>Email</FormLabel>

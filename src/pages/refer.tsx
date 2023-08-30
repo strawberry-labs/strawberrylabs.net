@@ -75,7 +75,7 @@ export default function Pricing() {
                     }
                 });
             });
-        } // TODO: Show user not to enter empty fields. Plus error handling
+        }
         else {
             setGeneralErrorCreate("Fill required fields before submission")
         }
@@ -122,7 +122,7 @@ export default function Pricing() {
                     }
                 });
             });
-        } // TODO: Show user not to enter empty fields. Plus error handling if email is not found.
+        }
         else {
             setGeneralErrorRetrieve("Fill required fields before submission")
         }
