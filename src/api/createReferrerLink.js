@@ -35,13 +35,13 @@ export default async function handler(req, res) {
         try {
             await doc.save()
         } catch (e) {
-            res.status(500).send()
+            res.status(500).send({ "Error": "Error with database" })
         }
 
         const referrerLink = `https://strawberrylabs.net?referrerId=${referrerId}`
         res.status(200).json({ referrerLink: referrerLink })
     } else {
-        res.status(500).send()
+        res.status(500).send({ "Error": "Captcha error" })
     }
 
 

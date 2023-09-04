@@ -30,11 +30,11 @@ export default async function handler(req, res) {
             //return link
             res.status(200).json(links)
         } catch (e) {
-            res.status(500).send()
+            res.status(500).send({ "Error": "Error with database" })
         }
 
     } else {
-        res.status(500).send()
+        res.status(500).send({ "Error": "captcha error" })
     }
 
 

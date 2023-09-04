@@ -119,7 +119,7 @@ export default async function handler(req, res) {
             await doc.save();
         }
         catch (e) {
-            res.status(500).send()
+            res.status(500).send({ "Error": "Error with database" })
         }
 
         fetch(
@@ -140,13 +140,12 @@ export default async function handler(req, res) {
             return await sesClient.send(sendEmailCommand);
             console.log("done");
         } catch (e) {
-            console.error("Failed to send email.");
-            console.error(e);
+            res.status(500).send({ "Error": "Error with AWS SES" })
         }
 
         res.status(200).send();
     } else {
-        res.status(500).send();
+        res.status(500).send({ "Error": "Captcha error" });
     }
 
 
