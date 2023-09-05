@@ -97,7 +97,7 @@ export default async function handler(req, res) {
     )
 
     let captchaJson = await captcha.json()
-    console.log(captchaJson)
+
     if (captchaJson.success) {
         const doc = new ContactForm(data);
 
@@ -145,6 +145,9 @@ export default async function handler(req, res) {
 
         res.status(200).send();
     } else {
-        res.status(500).send({ "Error": "Captcha error" });
+        res.status(500).send({
+            "Error": "Captcha error",
+            ...captchaJson
+        });
     }
 }
