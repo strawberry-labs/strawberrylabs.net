@@ -97,7 +97,7 @@ export default async function handler(req, res) {
     )
 
     let captchaJson = await captcha.json()
-
+    console.log(captchaJson)
     if (captchaJson.success) {
         const doc = new ContactForm(data);
 
@@ -140,13 +140,11 @@ export default async function handler(req, res) {
             return await sesClient.send(sendEmailCommand);
             console.log("done");
         } catch (e) {
-            res.status(500).send({ "Error": "Error with AWS SES" })
+            console.log()
         }
 
         res.status(200).send();
     } else {
         res.status(500).send({ "Error": "Captcha error" });
     }
-
-
 }
