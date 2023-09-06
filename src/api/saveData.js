@@ -71,14 +71,14 @@ const referrerSchema = Schema({
 const Referrer = mongoose.model('referrer', referrerSchema)
 
 const formatReqBody = (data) => {
-    return `<b>industry:</b> ${data.industry} %0A
-<b>name:</b> ${data.name} %0A
-<b>email:</b> ${data.email} %0A
-<b>phone:</b> ${data.phone} %0A
-<b>description:</b> ${data.description} %0A
-<b>nda:</b> ${data.nda} %0A
-<b>referrer organization:</b> ${data.referrerOrganizationName} %0A
-<b>referrer email:</b> ${data.referrerEmail}
+    return `<b>Industry:</b> ${data.industry} %0A
+<b>Name:</b> ${data.name} %0A
+<b>Email:</b> ${data.email} %0A
+<b>Phone:</b> ${data.phone} %0A
+<b>Description:</b> ${data.description} %0A
+<b>NDA:</b> ${data.nda} %0A
+<b>Referrer Organization:</b> ${data.referrerOrganizationName} %0A
+<b>Referrer Email:</b> ${data.referrerEmail}
 `;
 };
 
