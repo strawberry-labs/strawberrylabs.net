@@ -1,153 +1,195 @@
-import { Timestamp } from "mongodb";
+// src/api/contact.js
 import mongoose, { Schema } from "mongoose";
 import Cookies from 'universal-cookie';
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
+import dotenv from 'dotenv';
 
-// Set the AWS Region.
+// Load environment variables
+dotenv.config();
+
+// Set the AWS Region and Credentials from environment variables.
 const REGION = "us-east-1";
-// Create SES service object.
-const sesClient = new SESClient({ region: REGION });
-
-const contactFormSchema = Schema({
-    industry: String,
-    name: String,
-    email: String,
-    phone: String,
-    description: String,
-    nda: Boolean,
-    referrerId: String
+const sesClient = new SESClient({
+  region: REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_SES_ACCESS_KEY,
+    secretAccessKey: process.env.AWS_SES_SECRET_ACCESS_KEY,
+  },
 });
 
-const createSendEmailCommand = (toAddress, fromAddress) => {
-    return new SendEmailCommand({
-        Destination: {
-            /* required */
-            CcAddresses: [
-                /* more items */
-            ],
-            ToAddresses: [
-                toAddress,
-                /* more To-email addresses */
-            ],
-        },
-        Message: {
-            /* required */
-            Body: {
-                /* required */
-                Html: {
-                    Charset: "UTF-8",
-                    Data: "<h1>Hi</h1> <br><p> This is a test email. Have a nice day. </p><br>Kind regards,<br>Strawberry Labs.",
-                },
-                Text: {
-                    Charset: "UTF-8",
-                    Data: "TEXT_FORMAT_BODY",
-                },
-            },
-            Subject: {
-                Charset: "UTF-8",
-                Data: "Test Email",
-            },
-        },
-        Source: fromAddress,
-        ReplyToAddresses: [
-            /* more items */
-        ],
-    });
+// Define the Contact Form Schema
+const contactFormSchema = new Schema({
+  industry: { type: String, required: true },
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  phone: { type: String, required: true },
+  description: { type: String, required: true },
+  nda: { type: Boolean, default: false },
+  referrerId: { type: String, default: null },
+  referrerOrganizationName: { type: String, default: null },
+  referrerEmail: { type: String, default: null },
+  createdAt: { type: Date, default: Date.now },
+});
+
+// Define the Referrer Schema
+const referrerSchema = new Schema({
+  referrerId: { type: String, required: true, unique: true },
+  orgName: { type: String, required: true },
+  email: { type: String, required: true },
+  status: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now },
+});
+
+// Create Mongoose Models
+const ContactForm = mongoose.models.ContactForm || mongoose.model("ContactForm", contactFormSchema);
+const Referrer = mongoose.models.Referrer || mongoose.model("Referrer", referrerSchema);
+
+// Connect to MongoDB
+if (!mongoose.connection.readyState) {
+  mongoose.connect(
+    `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@strawberrylabs.conqfzr.mongodb.net/strawberrylabs?retryWrites=true&w=majority`,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  ).then(() => {
+    console.log("Connected to MongoDB successfully.");
+  }).catch((error) => {
+    console.error("MongoDB connection error:", error);
+  });
+}
+
+// Helper function to format email content
+const formatEmailContent = (data) => {
+  return `
+    <h2>New Contact Form Submission</h2>
+    <p><strong>Industry:</strong> ${data.industry}</p>
+    <p><strong>Name:</strong> ${data.name}</p>
+    <p><strong>Email:</strong> ${data.email}</p>
+    <p><strong>Phone:</strong> ${data.phone}</p>
+    <p><strong>Description:</strong> ${data.description}</p>
+    <p><strong>NDA:</strong> ${data.nda ? "Yes" : "No"}</p>
+    ${data.referrerOrganizationName ? `<p><strong>Referrer Organization:</strong> ${data.referrerOrganizationName}</p>` : ""}
+    ${data.referrerEmail ? `<p><strong>Referrer Email:</strong> ${data.referrerEmail}</p>` : ""}
+  `;
 };
 
-mongoose.connect(
-    `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@strawberrylabs.conqfzr.mongodb.net/strawberrylabs?retryWrites=true&w=majority`
-);
-
-const ContactForm = mongoose.model("contactform", contactFormSchema);
-
-const referrerSchema = Schema({
-    referrerId: String,
-    orgName: String,
-    email: String,
-    status: String,
-})
-
-const Referrer = mongoose.model('referrer', referrerSchema)
-
-const formatReqBody = (data) => {
-    return `<b>Industry:</b> ${data.industry} %0A
-<b>Name:</b> ${data.name} %0A
-<b>Email:</b> ${data.email} %0A
-<b>Phone:</b> ${data.phone} %0A
-<b>Description:</b> ${data.description} %0A
-<b>NDA:</b> ${data.nda} %0A
-<b>Referrer Organization:</b> ${data.referrerOrganizationName} %0A
-<b>Referrer Email:</b> ${data.referrerEmail}
-`;
+// Function to create SES SendEmailCommand
+const createSendEmailCommand = (toAddress, fromAddress, subject, htmlBody, textBody) => {
+  return new SendEmailCommand({
+    Destination: {
+      ToAddresses: [toAddress],
+    },
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: htmlBody,
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: textBody,
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: subject,
+      },
+    },
+    Source: fromAddress,
+    ReplyToAddresses: [fromAddress],
+  });
 };
 
 export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
-    const cookies = new Cookies(req.headers.cookie);
+  const cookies = new Cookies(req.headers.cookie);
+  let parsedBody;
 
-    let { token, ...data } = JSON.parse(req.body)
+  try {
+    parsedBody = JSON.parse(req.body);
+  } catch (error) {
+    return res.status(400).json({ error: "Invalid JSON format" });
+  }
 
-    let telegramData = data;
+  const { token, ...formData } = parsedBody;
+  const captchaSecret = process.env.RECAPTCHA_SECRET_KEY;
 
-    let captcha = await fetch(
-        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY
-        }&response=${token}`,
-        { method: "POST" }
-    )
+  if (!captchaSecret) {
+    return res.status(500).json({ error: "Server configuration error" });
+  }
 
-    let captchaJson = await captcha.json()
+  try {
+    // Verify reCAPTCHA
+    const captchaResponse = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${captchaSecret}&response=${token}`,
+      }
+    );
 
-    if (captchaJson.success) {
-        const doc = new ContactForm(data);
+    const captchaJson = await captchaResponse.json();
 
-        if (cookies.get("referrerId") != null) {
-            //validate referrerId first
-            let refId = cookies.get("referrerId")
-            let referrer = await Referrer.findOne({ referrerId: refId }).exec()
-            console.log(`refId: ${refId}`)
-            console.log(`referrer: ${JSON.stringify(referrer)}`)
-
-            if (referrer != null) {
-                doc.referrerId = refId
-                telegramData.referrerOrganizationName = referrer.orgName
-                telegramData.referrerEmail = referrer.email
-            }
-        }
-
-        try {
-            await doc.save();
-        }
-        catch (e) {
-            res.status(500).send({ "Error": "Error with database" })
-        }
-
-        fetch(
-            `https://api.telegram.org/bot6299109900:AAGV5zW_i6N39cYlvEx0Y2i-hK7tNE_vcPk/sendMessage?chat_id=-845129458&text=${formatReqBody(
-                telegramData
-            )}&parse_mode=HTML`,
-            {
-                method: "POST",
-            }
-        ).then((response) => console.log(response));
-
-        const sendEmailCommand = createSendEmailCommand(
-            "shriramsekar11@gmail.com",
-            "notification@strawberrylabs.net"
-        );
-
-        try {
-            return await sesClient.send(sendEmailCommand);
-            console.log("done");
-        } catch (e) {
-            console.log()
-        }
-
-        res.status(200).send();
-    } else {
-        res.status(500).send({
-            "Error": "Captcha error",
-            ...captchaJson
-        });
+    if (!captchaJson.success) {
+      return res.status(400).json({
+        error: "Captcha verification failed",
+        details: captchaJson
+      });
     }
+
+    // Handle Referrer Information
+    if (cookies.get("referrerId")) {
+      const refId = cookies.get("referrerId");
+      const referrer = await Referrer.findOne({ referrerId: refId }).exec();
+
+      if (referrer) {
+        formData.referrerId = refId;
+        formData.referrerOrganizationName = referrer.orgName;
+        formData.referrerEmail = referrer.email;
+      }
+    }
+
+    // Save Contact Form Data to Database
+    const contactFormDoc = new ContactForm(formData);
+    await contactFormDoc.save();
+
+    // Prepare Email Content
+    const emailHtml = formatEmailContent(formData);
+    const emailText = `
+      New Contact Form Submission
+      Industry: ${formData.industry}
+      Name: ${formData.name}
+      Email: ${formData.email}
+      Phone: ${formData.phone}
+      Description: ${formData.description}
+      NDA: ${formData.nda ? "Yes" : "No"}
+      ${formData.referrerOrganizationName ? `Referrer Organization: ${formData.referrerOrganizationName}` : ""}
+      ${formData.referrerEmail ? `Referrer Email: ${formData.referrerEmail}` : ""}
+    `;
+
+    // Create SES SendEmailCommand
+    const sendEmailCommand = createSendEmailCommand(
+      "chirag@strawberrylabs.net", // To Address
+      "notifications@strawberrylabs.net", // From Address
+      "New Contact Form Submission", // Subject
+      emailHtml, // HTML Body
+      emailText // Text Body
+    );
+
+    // Send Email via SES
+    await sesClient.send(sendEmailCommand);
+    console.log("Email sent successfully to chirag@strawberrylabs.net.");
+
+    return res.status(200).json({ message: "Form submitted successfully." });
+
+  } catch (error) {
+    console.error("Error processing form submission:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 }
